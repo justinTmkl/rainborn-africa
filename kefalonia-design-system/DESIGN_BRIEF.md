@@ -203,7 +203,9 @@ The things that make this a talk rather than a slideshow. Each one is already bu
 
 ## 4. Asset shot list
 
-Gather these into `assets/`. Names are what the deck expects.
+Gather these into `assets/`. Names are what the deck expects. **Your own trip photos and
+video always beat any stand-in** — swap them in the moment you have them; the brief below is
+for shooting your own list and for what `preview/deck.html` uses meanwhile.
 
 **Video (mp4, H.264, 1920×1080, ≤ 12 s, silent unless noted):**
 
@@ -229,6 +231,47 @@ Plus **three decoy beach photos** that are not Kefalonia, for the quiz.
 
 Missing assets are not a blocker. Every component renders with text alone, and a slide with
 a good line and no photo beats a slide with a bad photo.
+
+### 4.1 Real photos currently wired into `preview/deck.html`
+
+Until your own photos are in, the preview uses real Wikimedia Commons photographs — not
+illustrations — loaded straight from Commons via each file's stable `Special:FilePath` link
+(the same mechanism Wikipedia's own apps use, so a valid filename always resolves to the
+current image; the failure mode for a bad filename is a blank slot, not a wrong photo).
+
+**Important:** these were sourced by an agent that could search Commons but not open pages,
+so licences and photographer names below are the best available read, not independently
+re-verified by opening each file page. Kefalonia is a real place either of us could visit —
+before this deck leaves your laptop, click through each link once and confirm the licence
+tag matches what's here. That's a five-minute pass, not a redesign.
+
+| Used for | File (Commons) | Licence (unverified where noted) | Credit |
+| --- | --- | --- | --- |
+| Title slide, compare-slider "midday" | Myrtos Beach, Kefalonia.jpg | CC BY 2.0 | Matt Sims |
+| Chapter divider "Exploring the island" | Mount-Aenos.JPG | CC BY-SA 2.5 | *author not recovered — verify* |
+| Compare-slider "sunset", boat stop 17:00, closing slide | Sunset, Kefalonia (8104570279).jpg | *unconfirmed* | *verify on page* |
+| Arch gallery + taverna "Tassia" | Fiskardo, Kefalonia.jpg | likely PD (old Wikipedia transfer) | *author not recovered — verify* |
+| Arch gallery + taverna "Paradise" | Waterfront in Sami on Kefalonia.jpg | *unconfirmed* | *verify on page* |
+| Boat stop 09:00, taverna "Casa Grec" | De Bosset Bridge.JPG | CC BY-SA 3.0 | Evangelia Papanastasatou (Saintfevrier) |
+| Boat stop 11:30 ("Melissani cave") | Melissani Cave, Kefalonia 1.jpg | CC BY 2.0 | Matt Sims |
+| Boat stop 13:30 | Petani beach-kefalonia.JPG | CC BY 3.0 | *verify exact name on page* |
+| Quiz option A | Skala, Kefalonia1.jpg | *unconfirmed* | *verify on page* |
+| Quiz option B (the decoy — Sardinia, not Kefalonia) | Beach of Platamona, Sardinia.jpg | CC BY-SA 3.0 | Zxasqw80 |
+| Quiz option C | Kafalonia Paralia Xi.jpg | CC BY-SA 3.0 | AlMare |
+| Quiz option D | Sailing at Kefalonia (Greece).jpg | CC BY 2.0 | Flickr user Paul_Naturist |
+| Taverna "To Perasma" | Babulas Taverna, Mykonos, Greece (29741939366).jpg | likely CC BY 2.0 | Flickr user mustangjoe — **this one is Mykonos, not Kefalonia; it's standing in for "a taverna terrace," not documenting a specific place** |
+| Island-map background | Kefallonia IthakiWW.jpg | Public domain | NASA World Wind |
+
+**Not found with a confirmed licence — currently an honest "add your photo" placeholder, or
+dropped from the copy rather than faked:** Assos village and its castle (the arch-gallery
+slot shows a plain empty-frame card, not a fake), Mount Ainos's wild horses, a close-up
+anchor/chain shot, genuine drone footage of the coastline, and a Kefalonia-specific
+whitewashed archway. None of these block the deck — they're exactly the shots worth taking
+yourself, since your own photo of Assos beats any stock photo of it anyway.
+
+If you open the preview and a specific image looks wrong (broken, mislabelled, or the
+licence doesn't check out on the Commons page), that's a one-line fix — say which slot and
+it gets swapped or pulled back to a placeholder.
 
 ---
 

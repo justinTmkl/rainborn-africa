@@ -100,13 +100,12 @@ body { background:var(--kef-sea-abyss); font-family:var(--kef-font-sans); overfl
 .slide.is-active .stagger > *:nth-child(6){animation-delay:450ms}
 .slide.is-active .stagger > *:nth-child(7){animation-delay:540ms}
 .slide.is-active .stagger > *:nth-child(8){animation-delay:630ms}
-.slide.is-active .scene { animation:kenburns 18s var(--kef-ease-drift) infinite alternate; }
 .glint { position:absolute; inset:0; pointer-events:none; background:var(--kef-grad-sunglint); }
 .slide.is-active .glint { animation:shimmer 7s var(--kef-ease-drift) infinite; }
 
 @media (prefers-reduced-motion:reduce) {
   .slide.is-active .anim-rise,.slide.is-active .anim-fade,.slide.is-active .stagger > *,
-  .slide.is-active .scene,.slide.is-active .glint,.boat,.wave-band svg {
+  .slide.is-active .scene img,.slide.is-active .glint,.boat,.wave-band svg {
     animation:fadein 1ms linear both !important;
   }
 }
@@ -127,49 +126,23 @@ body { background:var(--kef-sea-abyss); font-family:var(--kef-font-sans); overfl
 .inner { position:relative; height:calc(100% - 46px); }
 .scrim { position:absolute; inset:0; background:var(--kef-grad-scrim); pointer-events:none; }
 
-/* ---- Scenes ------------------------------------------------------------
-   Stand-ins for the photographs on the shot list. Sky and sea are one CSS
-   gradient with a hard stop at the horizon; headlands, villages, beaches and
-   the cave mouth are flat SVG paths filled from the same tokens. Each variant
-   only overrides custom properties, so a scene is four numbers and five hexes.
-   ---------------------------------------------------------------------- */
-.scene { position:absolute; inset:0; overflow:hidden; will-change:transform;
-  --sky-a:#A9E4F0; --sky-b:#EFF9F4; --sea-a:#7BE0E2; --sea-b:#0E6E90;
-  --rock-a:#93A96E; --rock-b:#E6DCC2; --rock-c:#6E8047; --rock-d:#D5C7A6;
-  --haze:#8FA9A0; --sun-x:74%; --sun-y:16%; --sun-o:.5; --horizon:52%;
-  background:linear-gradient(180deg,
-    var(--sky-a) 0%, var(--sky-b) calc(var(--horizon) - 3%),
-    var(--sea-a) var(--horizon), var(--sea-b) 100%); }
-.scene > svg { position:absolute; inset:0; width:100%; height:100%; }
+/* ---- Photos --------------------------------------------------------------
+   Real photographs, not illustrations. Every `.scene` is a container that
+   clips a real <img>; the Ken Burns push (18s, alternate) animates the img's
+   transform, not the container, which is the standard technique for getting
+   slow motion out of a still frame without revealing the crop edges.
+   All sources are Wikimedia Commons, credited in the appendix slide and in
+   DESIGN_BRIEF.md §4. A few shots (marked below) have no confirmed free photo
+   yet and show a plain "add your photo" placeholder instead of a fake.
+   -------------------------------------------------------------------------- */
+.scene { position:absolute; inset:0; overflow:hidden; background:var(--kef-limestone); }
+.scene img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+.slide.is-active .scene img { animation:kenburns 18s var(--kef-ease-drift) infinite alternate; }
 
-/* Variants — each names the shot it stands in for. */
-.sc-noon      { --sky-a:#96DFF0; --sky-b:#EFF9F4; --sea-a:#7FE4E4; --sea-b:#0C6C90; --sun-y:15%; --sun-o:.5; --horizon:46%; }
-.sc-sunset    { --sky-a:#FFD27A; --sky-b:#FFAF7C; --sea-a:#E39070; --sea-b:#2B3E62; --sun-x:62%; --sun-y:41%; --sun-o:.95; --horizon:50%;
-                --rock-a:#7C5F52; --rock-b:#A87C68; --rock-c:#4E3B3C; --rock-d:#7B5A52; --haze:#8A6A6E; }
-.sc-road      { --sky-a:#9EE1F1; --sky-b:#EEF9F2; --sea-a:#63D3DA; --sea-b:#0B5673; --horizon:40%;
-                --rock-a:#7E8F4E; --rock-b:#D9C9A2; --rock-c:#4E6039; --rock-d:#BFAE86; }
-.sc-assos     { --sky-a:#9FDFF0; --sky-b:#F6F2E4; --sea-a:#63D6DC; --sea-b:#0F6E8E; --horizon:44%; --sun-o:.3;
-                --rock-a:#8C9A62; --rock-b:#FBF6EC; --rock-c:#C9506F; --rock-d:#E9DFC8; }
-.sc-fiskardo  { --sky-a:#A9E4F2; --sky-b:#FBF6EA; --sea-a:#54C9D4; --sea-b:#0D6486; --horizon:47%; --sun-o:.28;
-                --rock-a:#84945A; --rock-b:#FDFBF6; --rock-c:#C05A38; --rock-d:#EFE6D2; }
-.sc-sami      { --sky-a:#B4E7F2; --sky-b:#F4F6E9; --sea-a:#6ED6DC; --sea-b:#12607E; --horizon:45%; --sun-o:.32;
-                --rock-a:#6F8148; --rock-b:#E6DCC2; --rock-c:#4E6039; --rock-d:#CFC3AE; }
-.sc-cave      { --sky-a:#2FB3C2; --sky-b:#7FE3E4; --sea-a:#35B8C4; --sea-b:#0A4F6B; --horizon:56%; --sun-x:50%; --sun-y:22%; --sun-o:.85;
-                --rock-a:#0D3140; --rock-b:#0A2731; --rock-c:#123A46; --rock-d:#06384B; }
-.sc-taverna   { --sky-a:#EDA85E; --sky-b:#9A5F6E; --sea-a:#7A4A5A; --sea-b:#2A2233; --horizon:62%; --sun-x:20%; --sun-y:44%; --sun-o:.75;
-                --rock-a:#6E2438; --rock-b:#E9C79A; --rock-c:#C05A38; --rock-d:#8A4A44; }
-.sc-pebble    { --sky-a:#93DDEF; --sky-b:#F1FAF5; --sea-a:#84E7E4; --sea-b:#0E7392; --horizon:28%;
-                --rock-a:#8C9A62; --rock-b:#EFE3C6; --rock-c:#6E8047; --rock-d:#E7D6B8; }
-.sc-pebble-2  { --sky-a:#8AD8EC; --sky-b:#EAF7F6; --sea-a:#6ADCE0; --sea-b:#0C617E; --horizon:25%;
-                --rock-a:#7E8F4E; --rock-b:#E4D8BC; --rock-c:#5D6C3E; --rock-d:#D9CBAF; }
-.sc-sand      { --sky-a:#BCE2F3; --sky-b:#FBF3E2; --sea-a:#4FB6D8; --sea-b:#14567E; --horizon:27%;
-                --rock-a:#C9A96E; --rock-b:#F5DFAE; --rock-c:#A8874F; --rock-d:#EFD59B; }
-.sc-lastlight { --sky-a:#FFC978; --sky-b:#E8834E; --sea-a:#D0714A; --sea-b:#1E3A55; --horizon:58%; --sun-x:50%; --sun-o:0;
-                --rock-a:#6B4C46; --rock-b:#96665A; --rock-c:#3E3038; --rock-d:#5E4440; --haze:#8C6258; }
-.sc-harbour   { --sky-a:#A5E1F0; --sky-b:#F4F7EC; --sea-a:#5CC9D2; --sea-b:#0A5570; --horizon:52%;
-                --rock-a:#84945A; --rock-b:#F2EADA; --rock-c:#C05A38; --rock-d:#E0D4B8; }
-.sc-bay       { --sky-a:#8FDCEE; --sky-b:#EEF9F4; --sea-a:#8AE9E6; --sea-b:#0E7A99; --horizon:34%;
-                --rock-a:#7E8F4E; --rock-b:#DCCFA8; --rock-c:#4E6039; --rock-d:#C6B893; }
+.scene--missing { display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
+  background:linear-gradient(160deg,var(--kef-limestone),var(--kef-sand)); color:var(--kef-ink-mute); }
+.scene--missing svg { opacity:.55; }
+.scene--missing span { font-size:14px; letter-spacing:.04em; text-align:center; padding:0 16px; }
 
 /* ---- Chrome ------------------------------------------------------------ */
 .rail { position:absolute; left:var(--kef-gutter); right:var(--kef-gutter); bottom:52px;
@@ -218,12 +191,15 @@ body { background:var(--kef-sea-abyss); font-family:var(--kef-font-sans); overfl
 .map-grid { display:grid; grid-template-columns:minmax(0,1fr) 600px; grid-template-rows:minmax(0,1fr);
   gap:64px; height:100%; align-items:center; }
 .map-grid > * { min-height:0; }
-.map-route { stroke-dasharray:14 12; stroke-dashoffset:4000;
-  transition:stroke-dashoffset 3600ms var(--kef-ease-tide); }
-.slide.is-active .map-route { stroke-dashoffset:0; }
-.map-pin { opacity:0; }
-.slide.is-active .map-pin { animation:pindrop var(--kef-dur-slow) var(--kef-ease-lift) both; }
-.map-facts { display:grid; gap:14px; margin:30px 0 0; }
+.map-photo { position:relative; height:100%; margin:0; border-radius:var(--kef-radius-lg);
+  overflow:hidden; box-shadow:var(--kef-shadow-lg); }
+.map-photo figcaption { position:absolute; left:0; right:0; bottom:0; padding:16px 22px;
+  background:var(--kef-grad-scrim); color:var(--kef-ink-ondark); }
+.route-trail { display:flex; flex-wrap:wrap; gap:8px 10px; margin-top:28px; }
+.route-trail span { font-size:15px; font-weight:500; color:var(--kef-sea-deep);
+  padding:6px 4px; }
+.route-trail span:not(:last-child)::after { content:'→'; margin-left:14px; color:var(--kef-sand); font-weight:400; }
+.map-facts { display:grid; gap:14px; margin:24px 0 0; }
 .map-facts div { display:flex; justify-content:space-between; gap:20px;
   border-bottom:var(--kef-border-sand); padding-bottom:12px; }
 .map-facts dt { font-size:17px; letter-spacing:.1em; text-transform:uppercase; color:var(--kef-ink-mute); }
@@ -294,7 +270,7 @@ body { background:var(--kef-sea-abyss); font-family:var(--kef-font-sans); overfl
 .quiz__opt { position:relative; padding:0; overflow:hidden; cursor:pointer; background:rgba(6,56,75,.4);
   border-radius:var(--kef-radius-lg); border:var(--kef-border-glass); box-shadow:var(--kef-shadow-md);
   transition:all var(--kef-dur-slow) var(--kef-ease-lift); }
-.quiz__opt .scene { animation:none; }
+.quiz__opt .scene img { animation:none; }
 .quiz__label { position:absolute; inset:auto 0 0 0; padding:48px 20px 20px;
   background:var(--kef-grad-scrim); color:var(--kef-ink-ondark); font-size:22px; font-weight:500; text-align:left; }
 .quiz.is-answered .quiz__opt { cursor:default; opacity:.35; }
@@ -374,8 +350,8 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
 
   <!-- ══ 1 · Title ═════════════════════════════════════════════════════ -->
   <section class="slide slide--flush on-dark" data-chapter="Arrival" data-dark="1"
-    data-note="Wait for the room to go quiet. The footage does the work.">
-    <div class="scene" data-scene="noon"></div>
+    data-note="Wait for the room to go quiet. The photo does the work.">
+    <div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Myrtos%20Beach%2C%20Kefalonia.jpg" alt="Myrtos Beach, Kefalonia — the clifftop view" loading="lazy"></div>
     <div class="scrim"></div>
     <div class="glint"></div>
     <div class="wave-band">
@@ -407,21 +383,10 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
   <section class="slide sfc-foam" data-chapter="Arrival"
     data-note="Point at Ainos. Greenest island in the Ionian, and that is why.">
     <div class="inner map-grid">
-      <div style="position:relative;height:100%;display:grid;place-items:center">
-        <svg viewBox="-30 10 690 700" style="width:100%;height:100%;overflow:visible" role="img" aria-label="Map of Kefalonia">
-          <defs><linearGradient id="isl" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#F4ECDD"></stop><stop offset="60%" stop-color="#E7D6B8"></stop>
-            <stop offset="100%" stop-color="#7E8F4E"></stop></linearGradient></defs>
-          <g class="map-halo" opacity=".2"></g>
-          <path class="map-island" fill="url(#isl)" stroke="#4E6039" stroke-width="3"></path>
-          <path d="M286 512 l36 -30 l30 24 l34 -20 l40 32" fill="none" stroke="#29402F" stroke-width="5"
-            stroke-linecap="round" opacity=".5"></path>
-          <path class="map-route" fill="none" stroke="#D8456E" stroke-width="5" stroke-linecap="round"
-            stroke-dasharray="14 12"></path>
-          <g class="map-pins" font-size="24" font-weight="500" fill="#12303B"
-            style="font-family:var(--kef-font-sans)"></g>
-        </svg>
-      </div>
+      <figure class="map-photo">
+        <div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kefallonia%20IthakiWW.jpg" alt="Satellite view of Kefalonia and Ithaca, NASA" loading="lazy"></div>
+        <figcaption class="cap">Kefalonia &amp; Ithaca, seen from space · NASA World Wind</figcaption>
+      </figure>
       <div class="stagger center-col">
         <p class="eyebrow">The island</p>
         <h2 class="d-m" style="margin-top:12px;font-size:62px;text-wrap:balance">Nowhere near where you think it is</h2>
@@ -432,6 +397,10 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
         </svg>
         <p class="b-l" style="margin-top:24px">West coast of Greece, an hour's ferry from Ithaca, and green in a way
           Greek islands usually are not — Ainos holds a fir forest that grows nowhere else on earth.</p>
+        <div class="route-trail">
+          <span>Argostoli</span><span>Lixouri</span><span>Myrtos</span><span>Assos</span>
+          <span>Fiskardo</span><span>Sami</span><span>Ainos</span><span>Poros</span>
+        </div>
         <dl class="map-facts">
           <div><dt>Area</dt><dd>781 km²</dd></div>
           <div><dt>People</dt><dd>~36,000</dd></div>
@@ -483,7 +452,7 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
   <!-- ══ 4 · Chapter divider ═══════════════════════════════════════════ -->
   <section class="slide on-dark" data-chapter="The island" data-dark="1"
     data-note="412 kilometres on roads built for goats.">
-    <div class="scene" data-scene="road"></div>
+    <div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mount-Aenos.JPG" alt="Mount Ainos, Kefalonia" loading="lazy"></div>
     <div class="scrim"></div>
     <div class="chapter">
       <span class="num anim-rise" style="color:var(--kef-sun);text-align:right;opacity:.92">01</span>
@@ -503,20 +472,20 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
   <section class="slide slide--flush on-dark" data-chapter="The island" data-dark="1"
     data-note="Hand the mouse to the front row. Let them drag it.">
     <div class="compare" id="compare" data-interactive tabindex="0" role="slider"
-      aria-label="Compare Myrtos at noon and at sunset" aria-valuemin="0" aria-valuemax="100" aria-valuenow="48">
+      aria-label="Compare Myrtos by day with the island at sunset" aria-valuemin="0" aria-valuemax="100" aria-valuenow="48">
       <div class="compare__after">
-        <div class="scene" data-scene="sunset"></div>
+        <div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sunset%2C%20Kefalonia%20%288104570279%29.jpg" alt="Sunset over the sea, Kefalonia" loading="lazy"></div>
       </div>
       <div class="compare__before" id="compareBefore">
-        <div class="scene" data-scene="noon"></div>
+        <div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Myrtos%20Beach%2C%20Kefalonia.jpg" alt="Myrtos Beach, Kefalonia, midday" loading="lazy"></div>
       </div>
       <div class="compare__handle" id="compareHandle"><div class="compare__knob">↔</div></div>
-      <span class="compare__tag" style="left:56px">12:30</span>
-      <span class="compare__tag" style="right:56px">20:45</span>
+      <span class="compare__tag" style="left:56px">midday</span>
+      <span class="compare__tag" style="right:56px">sunset</span>
       <div class="glass anim-rise" style="position:absolute;left:var(--kef-gutter);bottom:190px;max-width:760px;padding:30px 38px">
-        <h2 class="t">The same bay, eight hours apart</h2>
-        <p class="b" style="margin-top:10px">At noon it is almost too bright to look at. By nine the cliffs go pink
-          and the water turns to ink. Drag the handle.</p>
+        <h2 class="t">Two moods of the same island</h2>
+        <p class="b" style="margin-top:10px">Myrtos at midday, almost too bright to look at straight on. Then the
+          light turns and the whole coast goes the colour of the inside of a shell. Drag the handle.</p>
       </div>
     </div>
   </section>
@@ -531,19 +500,19 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
       </header>
       <div class="arches stagger">
         <figure class="arch"><div class="arch__frame">
-          <div class="scene" data-scene="assos"></div></div>
+          <div class="scene scene--missing"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M3 16l5-5 4 4 3-3 6 6"/></svg><span>Add your Assos photo</span></div>
           <figcaption>
             <p class="t" style="font-size:34px">Assos</p>
             <p class="cap" style="margin-top:6px">A Venetian castle and eleven houses</p></figcaption>
         </figure>
         <figure class="arch"><div class="arch__frame">
-          <div class="scene" data-scene="fiskardo"></div></div>
+          <div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fiskardo%2C%20Kefalonia.jpg" alt="Fiskardo harbour, Kefalonia" loading="lazy"></div>
           <figcaption>
             <p class="t" style="font-size:34px">Fiskardo</p>
             <p class="cap" style="margin-top:6px">The only village the 1953 earthquake spared</p></figcaption>
         </figure>
         <figure class="arch"><div class="arch__frame">
-          <div class="scene" data-scene="sami"></div></div>
+          <div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Waterfront%20in%20Sami%20on%20Kefalonia.jpg" alt="Waterfront in Sami, Kefalonia" loading="lazy"></div>
           <figcaption>
             <p class="t" style="font-size:34px">Sami</p>
             <p class="cap" style="margin-top:6px">Where the ferries and the caves are</p></figcaption>
@@ -569,25 +538,26 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
         <div class="stops" id="stops">
           <div class="stop"><p class="mono" style="color:var(--kef-sun);font-size:20px">09:00</p>
             <div style="height:74px"></div>
-            <div class="glass stop__body"><div class="stop__media"><div class="scene" data-scene="harbour"></div></div>
+            <div class="glass stop__body"><div class="stop__media"><div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/De%20Bosset%20Bridge.JPG" alt="De Bosset Bridge, Argostoli, Kefalonia" loading="lazy"></div></div>
               <div><h3 class="t" style="font-size:32px">Argostoli harbour</h3>
               <p class="b" style="margin-top:8px">Twenty minutes of instructions, none of them about the wind.</p></div>
               <span class="chip chip--sun" style="align-self:flex-start;margin-top:auto">cast off</span></div></div>
           <div class="stop"><p class="mono" style="color:var(--kef-sun);font-size:20px">11:30</p>
             <div style="height:74px"></div>
-            <div class="glass stop__body"><div class="stop__media"><div class="scene" data-scene="cave"></div></div>
-              <div><h3 class="t" style="font-size:32px">The blue cave</h3>
-              <p class="b" style="margin-top:8px">You go in on your back so you can watch the light change.</p></div>
+            <div class="glass stop__body"><div class="stop__media"><div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Melissani%20Cave%2C%20Kefalonia%201.jpg" alt="Melissani Cave, Kefalonia" loading="lazy"></div></div>
+              <div><h3 class="t" style="font-size:32px">Melissani cave</h3>
+              <p class="b" style="margin-top:8px">The roof collapsed centuries ago, so a shaft of midday sun hits the lake
+                dead centre and the water looks lit from underneath.</p></div>
               <span class="chip chip--sun" style="align-self:flex-start;margin-top:auto">swim stop</span></div></div>
           <div class="stop"><p class="mono" style="color:var(--kef-sun);font-size:20px">13:30</p>
             <div style="height:74px"></div>
-            <div class="glass stop__body"><div class="stop__media"><div class="scene" data-scene="bay"></div></div>
+            <div class="glass stop__body"><div class="stop__media"><div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Petani%20beach-kefalonia.JPG" alt="Petani Beach, Kefalonia" loading="lazy"></div></div>
               <div><h3 class="t" style="font-size:32px">A bay with no name</h3>
               <p class="b" style="margin-top:8px">Bread, feta, tomatoes, and the boat rocking hard enough to spill things.</p></div>
               <span class="chip chip--sun" style="align-self:flex-start;margin-top:auto">lunch</span></div></div>
           <div class="stop"><p class="mono" style="color:var(--kef-sun);font-size:20px">17:00</p>
             <div style="height:74px"></div>
-            <div class="glass stop__body"><div class="stop__media"><div class="scene" data-scene="sunset"></div></div>
+            <div class="glass stop__body"><div class="stop__media"><div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sunset%2C%20Kefalonia%20%288104570279%29.jpg" alt="Sunset over the sea, Kefalonia" loading="lazy"></div></div>
               <div><h3 class="t" style="font-size:32px">Past Lixouri, home</h3>
               <p class="b" style="margin-top:8px">The wind gets up at five. Nobody warns you about that either.</p></div>
               <span class="chip chip--sun" style="align-self:flex-start;margin-top:auto">sunset run</span></div></div>
@@ -633,16 +603,16 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
         <h2 class="d-m" style="margin-top:12px">Three of these are Kefalonia. Which one isn't?</h2>
       </header>
       <div class="quiz" id="quiz" data-interactive>
-        <button class="quiz__opt" data-correct="0"><div class="scene" data-scene="pebble"></div><span class="quiz__label">A</span></button>
-        <button class="quiz__opt" data-correct="1"><div class="scene" data-scene="sand"></div><span class="quiz__label">B</span></button>
-        <button class="quiz__opt" data-correct="0"><div class="scene" data-scene="pebble-2"></div><span class="quiz__label">C</span></button>
-        <button class="quiz__opt" data-correct="0"><div class="scene" data-scene="bay"></div><span class="quiz__label">D</span></button>
+        <button class="quiz__opt" data-correct="0"><div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Skala%2C%20Kefalonia1.jpg" alt="Beach option A" loading="lazy"></div><span class="quiz__label">A</span></button>
+        <button class="quiz__opt" data-correct="1"><div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Beach%20of%20Platamona%2C%20Sardinia.jpg" alt="Beach option B" loading="lazy"></div><span class="quiz__label">B</span></button>
+        <button class="quiz__opt" data-correct="0"><div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kafalonia%20Paralia%20Xi.jpg" alt="Beach option C" loading="lazy"></div><span class="quiz__label">C</span></button>
+        <button class="quiz__opt" data-correct="0"><div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sailing%20at%20Kefalonia%20%28Greece%29.jpg" alt="Beach option D" loading="lazy"></div><span class="quiz__label">D</span></button>
       </div>
       <div class="quiz__reveal">
         <p class="cap" id="quizPrompt">Click the one you think it is.</p>
-        <p class="b-l" id="quizReveal" style="max-width:1300px;display:none">B is Sardinia. The giveaway is the sand —
-          Kefalonia's west-coast beaches are white pebbles over limestone, which is exactly why the water goes
-          turquoise. Fine golden sand means somewhere else.</p>
+        <p class="b-l" id="quizReveal" style="max-width:1300px;display:none">B is Platamona, in Sardinia — right
+          colour family, wrong coastline. Kefalonia's west side is steep limestone dropping straight into the
+          water; this one is a long, flat, open stretch of sand.</p>
       </div>
     </div>
   </section>
@@ -658,7 +628,7 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
       <div class="tavernas stagger" id="tavernas" data-interactive>
         <div class="tav" tabindex="0" role="button" aria-label="Tassia, flip for tip"><div class="tav__flip">
           <article class="tav__face card">
-            <div class="tav__media"><div class="scene" data-scene="harbour"></div></div>
+            <div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fiskardo%2C%20Kefalonia.jpg" alt="Fiskardo harbour, Kefalonia" loading="lazy"></div>
             <div class="tav__body"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
               <h3 class="t" style="font-size:34px">Tassia</h3>
               <span class="mono" style="color:var(--kef-mavrodaphne);font-size:20px">€€€</span></div>
@@ -675,7 +645,7 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
 
         <div class="tav" tabindex="0" role="button" aria-label="To Perasma, flip for tip"><div class="tav__flip">
           <article class="tav__face card">
-            <div class="tav__media"><div class="scene" data-scene="taverna"></div></div>
+            <div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Babulas%20Taverna%2C%20Mykonos%2C%20Greece%20%2829741939366%29.jpg" alt="A seaside taverna terrace, Greece" loading="lazy"></div>
             <div class="tav__body"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
               <h3 class="t" style="font-size:34px">To Perasma</h3>
               <span class="mono" style="color:var(--kef-mavrodaphne);font-size:20px">€€</span></div>
@@ -693,7 +663,7 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
 
         <div class="tav" tabindex="0" role="button" aria-label="Paradise Beach, flip for tip"><div class="tav__flip">
           <article class="tav__face card">
-            <div class="tav__media"><div class="scene" data-scene="bay"></div></div>
+            <div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Waterfront%20in%20Sami%20on%20Kefalonia.jpg" alt="Waterfront in Sami, Kefalonia" loading="lazy"></div>
             <div class="tav__body"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
               <h3 class="t" style="font-size:34px">Paradise</h3>
               <span class="mono" style="color:var(--kef-mavrodaphne);font-size:20px">€€</span></div>
@@ -711,7 +681,7 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
 
         <div class="tav" tabindex="0" role="button" aria-label="Casa Grec, flip for tip"><div class="tav__flip">
           <article class="tav__face card">
-            <div class="tav__media"><div class="scene" data-scene="sami"></div></div>
+            <div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/De%20Bosset%20Bridge.JPG" alt="De Bosset Bridge, Argostoli, Kefalonia" loading="lazy"></div>
             <div class="tav__body"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
               <h3 class="t" style="font-size:34px">Casa Grec</h3>
               <span class="mono" style="color:var(--kef-mavrodaphne);font-size:20px">€€</span></div>
@@ -788,7 +758,7 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
   <!-- ══ 13 · Closing ══════════════════════════════════════════════════ -->
   <section class="slide on-dark" data-chapter="Closing" data-dark="1"
     data-note="Let the sun finish sinking. Then take questions.">
-    <div class="scene" data-scene="lastlight"></div>
+    <div class="scene"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sunset%2C%20Kefalonia%20%288104570279%29.jpg" alt="Sunset over the sea, Kefalonia" loading="lazy"></div>
     <div class="scrim" style="opacity:.6"></div>
     <div style="position:absolute;inset:0;background:var(--kef-grad-sunset);opacity:.16;mix-blend-mode:screen"></div>
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 42%,rgba(6,56,75,.34) 0%,rgba(6,56,75,.12) 46%,rgba(6,56,75,0) 72%)"></div>
@@ -823,11 +793,19 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
           <tbody>
             <tr><td>Ken Burns push on every still</td><td>18s · alternate</td></tr>
             <tr><td>Staggered child reveal</td><td>90ms · 640ms</td></tr>
-            <tr><td>Route draw / boat hop</td><td>3.6s / 900ms</td></tr>
+            <tr><td>Boat hop between stops</td><td>900ms</td></tr>
             <tr><td>Sun sinking on the last slide</td><td>4.2s</td></tr>
             <tr><td>Default easing — a wave arriving</td><td>.22 1 .36 1</td></tr>
           </tbody>
         </table>
+        <div>
+          <p class="cap" style="letter-spacing:.1em;text-transform:uppercase">Photo credits</p>
+          <p class="b" style="margin-top:8px;max-width:640px">Real photographs, Wikimedia Commons: Matt Sims ·
+            Evangelia Papanastasatou (Saintfevrier) · AlMare · Zxasqw80 · Flickr users Paul_Naturist and mustangjoe,
+            via Commons — CC BY / CC BY&#8209;SA. Satellite image: NASA World Wind, public domain. A few licences and
+            authors could not be re-verified from this environment — see <span class="mono" style="font-size:13px">DESIGN_BRIEF.md §4</span>
+            before any public or commercial use. Assos still needs a real photo — none with a clear licence was found.</p>
+        </div>
       </div>
       <div class="col" style="gap:20px;justify-content:center">
         <div class="specimen"><p class="cap">Display · Cormorant Garamond 300</p>
@@ -862,141 +840,6 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
   var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
   var index = 0;
 
-  /* ---- Scenes --------------------------------------------------------
-     Each scene is one <svg> built from the variant's custom properties, so
-     the colours still live in CSS next to the tokens. Which landforms a
-     variant gets is the only thing decided here.
-     ------------------------------------------------------------------- */
-  var SCENES = {
-    noon:      { cliffs: 1, haze: 1 },
-    sunset:    { cliffs: 1, haze: 1 },
-    road:      { cliffs: 1, haze: 1, wide: 1 },
-    assos:     { cliffs: 1, town: 1, haze: 1 },
-    fiskardo:  { town: 1, haze: 1 },
-    sami:      { cliffs: 1, town: 1, haze: 1 },
-    cave:      { cave: 1 },
-    taverna:   { town: 1, dusk: 1 },
-    pebble:    { cliffs: 1, beach: 1, haze: 1, stack: 1 },
-    'pebble-2':{ cliffs: 1, beach: 1, stack: 2 },
-    sand:      { beach: 1, haze: 1 },
-    lastlight: { cliffs: 1, haze: 1 },
-    harbour:   { town: 1, cliffs: 1 },
-    bay:       { cliffs: 1, beach: 1, haze: 1, cape: 1 }
-  };
-
-  var sceneSeq = 0;
-  function buildScene(el) {
-    var name = el.dataset.scene;
-    var cfg = SCENES[name] || {};
-    el.classList.add('sc-' + name);
-    var cs = getComputedStyle(el);
-    var v = function (k) { return cs.getPropertyValue('--' + k).trim(); };
-    var H = Math.round(1080 * (parseFloat(v('horizon')) || 50) / 100);
-    var id = 'sc' + (++sceneSeq);
-    var rockA = v('rock-a'), rockB = v('rock-b'), rockC = v('rock-c'), rockD = v('rock-d');
-    var sunO = parseFloat(v('sun-o')) || 0;
-    var sunX = 1920 * parseFloat(v('sun-x')) / 100;
-    var sunY = 1080 * parseFloat(v('sun-y')) / 100;
-    var s = [];
-
-    s.push('<svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true">');
-    s.push('<defs>' +
-      '<linearGradient id="sky' + id + '" x1="0" y1="0" x2="0" y2="1">' +
-      '<stop offset="0" stop-color="' + v('sky-a') + '"/><stop offset="1" stop-color="' + v('sky-b') + '"/></linearGradient>' +
-      '<linearGradient id="sea' + id + '" x1="0" y1="0" x2="0" y2="1">' +
-      '<stop offset="0" stop-color="' + v('sea-a') + '"/><stop offset="1" stop-color="' + v('sea-b') + '"/></linearGradient>' +
-      '<linearGradient id="cl' + id + '" x1="0" y1="0" x2="0" y2="1">' +
-      '<stop offset="0" stop-color="' + rockA + '"/><stop offset=".46" stop-color="' + rockB + '"/>' +
-      '<stop offset="1" stop-color="' + rockB + '"/></linearGradient>' +
-      '<linearGradient id="cr' + id + '" x1="0" y1="0" x2="0" y2="1">' +
-      '<stop offset="0" stop-color="' + rockC + '"/><stop offset=".5" stop-color="' + rockD + '"/>' +
-      '<stop offset="1" stop-color="' + rockD + '"/></linearGradient>' +
-      '<radialGradient id="sun' + id + '">' +
-      '<stop offset="0" stop-color="#FFF3D6" stop-opacity=".95"/>' +
-      '<stop offset=".3" stop-color="#FFE29A" stop-opacity=".5"/>' +
-      '<stop offset="1" stop-color="#FFE29A" stop-opacity="0"/></radialGradient>' +
-      '</defs>');
-
-    s.push('<rect width="1920" height="' + H + '" fill="url(#sky' + id + ')"/>');
-    s.push('<rect y="' + H + '" width="1920" height="' + (1080 - H) + '" fill="url(#sea' + id + ')"/>');
-
-    if (sunO > 0) s.push('<circle cx="' + sunX + '" cy="' + sunY + '" r="230" fill="url(#sun' + id + ')" opacity="' + sunO + '"/>');
-
-    /* Distant island sitting on the horizon — cheap, effective depth. */
-    if (cfg.haze) s.push('<path d="M612 ' + H + ' C700 ' + (H - 48) + ' 830 ' + (H - 60) + ' 940 ' + (H - 34) +
-      ' C1024 ' + (H - 15) + ' 1096 ' + (H - 6) + ' 1156 ' + H + ' Z" fill="' + v('haze') + '" opacity=".34"/>');
-
-    /* Sun path glittering on the water. */
-    for (var i = 0; i < 12; i++) {
-      var y = H + 14 + i * i * 1.9 + i * 8;
-      if (y > 1070) break;
-      var w = 60 + i * 46;
-      s.push('<rect x="' + (sunX - w / 2) + '" y="' + y + '" width="' + w + '" height="' + (2 + i * 0.4) +
-        '" fill="#FDFBF6" opacity="' + (sunO * (0.34 - i * 0.024)).toFixed(3) + '" rx="2"/>');
-    }
-
-    /* Headlands: scrub on top fading into limestone, in one gradient — a hard
-       edge between the two reads as a ribbon rather than a hillside. */
-    if (cfg.cliffs) {
-      var lw = cfg.wide ? 190 : 0;
-      s.push('<path d="M0 ' + (H - 70) + ' C160 ' + (H - 98) + ' 300 ' + (H - 18) + ' ' + (392 + lw) + ' ' + (H + 92) +
-        ' C' + (470 + lw) + ' ' + (H + 190) + ' ' + (500 + lw) + ' ' + (H + 330) + ' ' + (512 + lw) + ' 1080 L0 1080 Z" fill="url(#cl' + id + ')"/>');
-      s.push('<path d="M1920 ' + (H - 96) + ' C1772 ' + (H - 116) + ' 1642 ' + (H - 28) + ' 1548 ' + (H + 86) +
-        ' C1476 ' + (H + 180) + ' 1452 ' + (H + 320) + ' 1444 1080 L1920 1080 Z" fill="url(#cr' + id + ')"/>');
-    }
-
-    /* Pebble or sand foreground. */
-    if (cfg.beach) s.push('<path d="M0 872 C320 812 700 856 1010 928 C1310 998 1650 972 1920 900 L1920 1080 L0 1080 Z" fill="' + rockB + '"/>' +
-      '<path d="M0 872 C320 812 700 856 1010 928 C1310 998 1650 972 1920 900 L1920 946 C1650 1016 1310 1042 1010 974 C700 902 320 858 0 918 Z" fill="' + rockD + '" opacity=".8"/>');
-
-    /* Whitewashed village on a quay. Seeded so it never reshuffles. */
-    if (cfg.town) {
-      var quay = cfg.dusk ? 792 : H + 138;
-      s.push('<rect y="' + quay + '" width="1920" height="' + (cfg.dusk ? 1080 - quay : 52) + '" fill="' + rockD + '" opacity=".95"/>');
-      var seed = 7;
-      var rnd = function () { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
-      for (var h = 0; h < 13; h++) {
-        var hx = 40 + h * 148 + rnd() * 22;
-        var hw = 92 + rnd() * 44;
-        var hh = 84 + rnd() * 96;
-        var wall = cfg.dusk ? rockA : rockB;
-        s.push('<rect x="' + hx.toFixed(0) + '" y="' + (quay - hh).toFixed(0) + '" width="' + hw.toFixed(0) +
-          '" height="' + hh.toFixed(0) + '" fill="' + wall + '"/>');
-        s.push('<path d="M' + (hx - 12).toFixed(0) + ' ' + (quay - hh).toFixed(0) + ' L' + (hx + hw / 2).toFixed(0) + ' ' +
-          (quay - hh - 40).toFixed(0) + ' L' + (hx + hw + 12).toFixed(0) + ' ' + (quay - hh).toFixed(0) + ' Z" fill="' + rockC + '"/>');
-        if (!cfg.dusk && h % 4 === 1) {
-          /* One bell tower per village. */
-          s.push('<rect x="' + (hx + hw / 2 - 16).toFixed(0) + '" y="' + (quay - hh - 118).toFixed(0) +
-            '" width="32" height="80" fill="' + wall + '"/>');
-          s.push('<circle cx="' + (hx + hw / 2).toFixed(0) + '" cy="' + (quay - hh - 126).toFixed(0) + '" r="18" fill="' + rockC + '"/>');
-        }
-      }
-    }
-
-    /* Offshore rock stacks and a green cape. Both sit in the centre of the
-       frame so they survive the portrait crop inside an arch or a quiz card. */
-    if (cfg.stack) {
-      s.push('<path d="M666 ' + (H + 8) + ' C704 ' + (H - 74) + ' 752 ' + (H - 98) + ' 794 ' + (H - 38) +
-        ' C814 ' + (H - 12) + ' 824 ' + (H + 2) + ' 834 ' + (H + 8) + ' Z" fill="' + rockC + '"/>');
-      if (cfg.stack > 1) s.push('<path d="M1084 ' + (H + 6) + ' C1112 ' + (H - 48) + ' 1150 ' + (H - 62) + ' 1180 ' + (H - 24) +
-        ' C1196 ' + (H - 6) + ' 1204 ' + (H + 2) + ' 1212 ' + (H + 6) + ' Z" fill="' + rockA + '"/>');
-    }
-    if (cfg.cape) {
-      s.push('<path d="M1240 ' + (H - 34) + ' C1120 ' + (H - 52) + ' 992 ' + (H + 8) + ' 944 ' + (H + 74) +
-        ' C1012 ' + (H + 104) + ' 1140 ' + (H + 86) + ' 1268 ' + (H + 44) + ' Z" fill="' + rockA + '"/>');
-    }
-
-    /* Cave mouth: everything dark except an arch, plus one shaft of light. */
-    if (cfg.cave) {
-      s.push('<path fill-rule="evenodd" fill="' + rockB + '" d="M0 0 H1920 V1080 H0 Z ' +
-        'M596 1080 C596 548 830 292 1062 292 C1294 292 1424 548 1424 1080 Z"/>');
-      s.push('<path d="M962 320 L1160 320 L1372 1080 L790 1080 Z" fill="#FFE29A" opacity=".16"/>');
-    }
-
-    s.push('</svg>');
-    el.innerHTML = s.join('');
-  }
-  document.querySelectorAll('[data-scene]').forEach(buildScene);
 
   /* ---- Fit the fixed 1920x1080 canvas to the viewport ----------------- */
   function fit() {
@@ -1074,74 +917,6 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
   /* ---- Hotkey hint fades out ---------------------------------------- */
   setTimeout(function () { document.getElementById('hint').classList.add('is-gone'); }, 7000);
 
-  /* ---- Island map ----------------------------------------------------
-     A drawn shape, not a survey: the Gulf of Argostoli notch and the long
-     Erisos peninsula up to Fiskardo are what make it recognisable from the
-     back of a room. Same path as KEFALONIA_OUTLINE in src/slides/Journeys.tsx.
-     ------------------------------------------------------------------- */
-  var OUTLINE = 'M308 40 C316 43 327 95 330 118 C333 141 325 181 326 205 C327 229 328 267 338 288 ' +
-    'C348 309 386 340 399 356 C412 372 416 388 432 404 C448 420 493 452 512 470 ' +
-    'C531 488 556 507 566 528 C576 549 584 601 586 620 C588 639 591 652 578 660 ' +
-    'C565 668 519 681 494 674 C469 667 430 622 403 612 C376 602 328 605 300 600 ' +
-    'C272 595 219 598 206 580 C193 562 208 494 208 470 C208 446 213 421 205 412 ' +
-    'C197 403 160 396 152 408 C144 420 148 476 146 500 C144 524 150 566 140 574 ' +
-    'C130 582 94 573 78 558 C62 543 37 492 30 470 C23 448 22 419 26 400 ' +
-    'C30 381 43 347 56 336 C69 325 104 324 120 322 C136 320 159 326 172 320 ' +
-    'C185 314 203 296 214 282 C225 268 243 240 248 224 C253 208 247 186 250 168 ' +
-    'C253 150 264 118 272 100 C280 82 300 37 308 40 Z';
-  var PINS = [
-    { l: 'Fiskardo', x: 308, y: 46, c: '#C05A38' },
-    { l: 'Assos', x: 252, y: 170, c: '#C05A38', left: 1 },
-    { l: 'Myrtos', x: 250, y: 222, c: '#1187A8', left: 1 },
-    { l: 'Sami', x: 397, y: 356, c: '#C05A38' },
-    { l: 'Mt Ainos', x: 356, y: 468, c: '#7E8F4E' },
-    { l: 'Argostoli', x: 208, y: 486, c: '#D8456E' },
-    { l: 'Lixouri', x: 148, y: 470, c: '#C05A38', left: 1 },
-    { l: 'Poros', x: 562, y: 528, c: '#C05A38', left: 1 }
-  ];
-  var NS = 'http://www.w3.org/2000/svg';
-  document.querySelector('.map-island').setAttribute('d', OUTLINE);
-  var halo = document.querySelector('.map-halo');
-  [1.035, 1.075, 1.115].forEach(function (k, i) {
-    var p = document.createElementNS(NS, 'path');
-    p.setAttribute('d', OUTLINE);
-    p.setAttribute('fill', 'none');
-    p.setAttribute('stroke', '#1187A8');
-    p.setAttribute('stroke-width', 2);
-    p.setAttribute('opacity', 1 - i * 0.3);
-    p.setAttribute('transform', 'translate(' + (-306 * (k - 1)) + ' ' + (-352 * (k - 1)) + ') scale(' + k + ')');
-    halo.appendChild(p);
-  });
-
-  /* Route, smoothed with quadratic midpoints so it curves like a coast road. */
-  document.querySelector('.map-route').setAttribute('d', (function () {
-    var order = ['Argostoli', 'Lixouri', 'Myrtos', 'Assos', 'Fiskardo', 'Sami', 'Mt Ainos', 'Poros'];
-    var pts = order.map(function (n) { return PINS.filter(function (p) { return p.l === n; })[0]; });
-    return pts.reduce(function (d, p, i) {
-      if (!i) return 'M' + p.x + ' ' + p.y;
-      var q = pts[i - 1];
-      var cx = (q.x + p.x) / 2 + (p.y - q.y) * 0.16;
-      var cy = (q.y + p.y) / 2 - (p.x - q.x) * 0.16;
-      return d + ' Q' + cx.toFixed(0) + ' ' + cy.toFixed(0) + ' ' + p.x + ' ' + p.y;
-    }, '');
-  })());
-
-  var pinGroup = document.querySelector('.map-pins');
-  PINS.forEach(function (p, i) {
-    var g = document.createElementNS(NS, 'g');
-    g.setAttribute('class', 'map-pin');
-    g.style.animationDelay = (600 + i * 180) + 'ms';
-    g.style.transformOrigin = p.x + 'px ' + p.y + 'px';
-    var c = document.createElementNS(NS, 'circle');
-    c.setAttribute('cx', p.x); c.setAttribute('cy', p.y); c.setAttribute('r', 13);
-    c.setAttribute('fill', p.c); c.setAttribute('stroke', '#FDFBF6'); c.setAttribute('stroke-width', 4);
-    var t = document.createElementNS(NS, 'text');
-    t.setAttribute('x', p.left ? p.x - 24 : p.x + 24);
-    t.setAttribute('y', p.y + 7);
-    t.setAttribute('text-anchor', p.left ? 'end' : 'start');
-    t.textContent = p.l;
-    g.appendChild(c); g.appendChild(t); pinGroup.appendChild(g);
-  });
 
   /* ---- Olive ratings ------------------------------------------------- */
   document.querySelectorAll('.olives').forEach(function (el) {
