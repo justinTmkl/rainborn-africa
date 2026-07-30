@@ -1,0 +1,137 @@
+<!-- @dsCard group="Foundations" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kefalonia Summer — foundations</title>
+<style>
+:root{
+  --sea-abyss:#06384B;--sea-deep:#0B5673;--sea-mid:#1187A8;--sea-lagoon:#35B8C4;
+  --sea-myrtos:#6FD9DC;--sea-foam:#C7EFEC;--whitewash:#FDFBF6;--limestone:#F4ECDD;
+  --sand:#E7D6B8;--pebble:#CFC3AE;--olive:#7E8F4E;--olive-deep:#4E6039;--cypress:#29402F;
+  --sun:#F6C049;--sun-glow:#FFE29A;--apricot:#F2914C;--terracotta:#C05A38;
+  --bougainvillea:#D8456E;--mavrodaphne:#6E2438;--ink:#12303B;--ink-soft:#3E5A66;--ink-mute:#6E858F;
+  --display:'Cormorant Garamond',Palatino,'Book Antiqua',Georgia,serif;
+  --sans:'DM Sans','Avenir Next','Segoe UI',system-ui,sans-serif;
+  --script:'Caveat','Bradley Hand','Segoe Script',cursive;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;padding:56px 64px;background:linear-gradient(160deg,#FDFBF6,#F4ECDD);
+  font-family:var(--sans);color:var(--ink-soft)}
+h1{font-family:var(--display);font-weight:400;font-size:60px;line-height:1;margin:8px 0 0;color:var(--ink)}
+h2{font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--sea-mid);margin:52px 0 18px}
+.eyebrow{font-size:14px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--sea-mid);margin:0}
+.lede{font-size:21px;line-height:1.5;max-width:60ch;margin:16px 0 0}
+.swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.sw{border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(18,48,59,.08);background:var(--whitewash)}
+.sw i{display:block;height:82px}
+.sw div{padding:9px 11px}
+.sw b{display:block;font-size:13px;font-weight:500;color:var(--ink)}
+.sw span{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+.sw em{display:block;font-size:11px;font-style:normal;color:var(--ink-mute);margin-top:3px;line-height:1.35}
+.type{display:grid;gap:22px}
+.spec{border-bottom:1px solid var(--sand);padding-bottom:16px}
+.spec p{margin:6px 0 0}
+.meta{font-family:var(--mono);font-size:12px;color:var(--ink-mute)}
+.d-xl{font-family:var(--display);font-size:76px;line-height:.94;font-weight:300;letter-spacing:-.02em;color:var(--ink)}
+.d-m{font-family:var(--display);font-size:44px;line-height:1.04;font-weight:400;color:var(--ink)}
+.body{font-size:19px;line-height:1.55;max-width:62ch}
+.note{font-family:var(--script);font-size:26px;color:var(--terracotta)}
+.mono{font-family:var(--mono);font-size:18px;color:var(--ink)}
+table{width:100%;border-collapse:collapse}
+td{padding:10px 0;border-bottom:1px solid var(--sand);font-size:17px}
+td:last-child{text-align:right;font-family:var(--mono);font-size:14px;color:var(--ink)}
+.two{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
+.rule{display:flex;gap:14px;align-items:center;margin-top:10px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;border-radius:999px;font-size:15px;font-weight:500}
+.p-sea{background:rgba(53,184,196,.16);border:1px solid rgba(17,135,168,.24);color:var(--sea-deep)}
+.p-sun{background:rgba(246,192,73,.22);border:1px solid rgba(192,90,56,.28);color:var(--terracotta)}
+.p-olive{background:rgba(126,143,78,.18);border:1px solid rgba(78,96,57,.28);color:var(--olive-deep)}
+</style>
+</head>
+<body>
+
+<p class="eyebrow">Design system · foundations</p>
+<h1>Kefalonia Summer</h1>
+<p class="lede">A Mediterranean deck system for a Greek island travel talk. High-key, bleached, hot:
+whitewashed limestone against turquoise water. The darkest value in the whole system is deep sea
+blue — there is no black anywhere.</p>
+
+<h2>Colour</h2>
+<div class="swatches">
+  <div class="sw"><i style="background:#06384B"></i><div><b>Sea abyss</b><span>#06384B</span><em>Scrims only — never a flat field</em></div></div>
+  <div class="sw"><i style="background:#0B5673"></i><div><b>Sea deep</b><span>#0B5673</span><em>Chapter backgrounds</em></div></div>
+  <div class="sw"><i style="background:#1187A8"></i><div><b>Sea mid</b><span>#1187A8</span><em>Eyebrows, map ink</em></div></div>
+  <div class="sw"><i style="background:#35B8C4"></i><div><b>Lagoon</b><span>#35B8C4</span><em>Primary accent</em></div></div>
+  <div class="sw"><i style="background:#6FD9DC"></i><div><b>Myrtos</b><span>#6FD9DC</span><em>Accents on dark</em></div></div>
+  <div class="sw"><i style="background:#C7EFEC"></i><div><b>Foam</b><span>#C7EFEC</span><em>Whole-slide surface</em></div></div>
+
+  <div class="sw"><i style="background:#FDFBF6"></i><div><b>Whitewash</b><span>#FDFBF6</span><em>Default canvas</em></div></div>
+  <div class="sw"><i style="background:#F4ECDD"></i><div><b>Limestone</b><span>#F4ECDD</span><em>Second surface</em></div></div>
+  <div class="sw"><i style="background:#E7D6B8"></i><div><b>Sand</b><span>#E7D6B8</span><em>Rules and dividers</em></div></div>
+  <div class="sw"><i style="background:#7E8F4E"></i><div><b>Olive</b><span>#7E8F4E</span><em>Ratings, island fill</em></div></div>
+  <div class="sw"><i style="background:#4E6039"></i><div><b>Olive deep</b><span>#4E6039</span><em>Text on sand</em></div></div>
+  <div class="sw"><i style="background:#29402F"></i><div><b>Cypress</b><span>#29402F</span><em>Deep warm contrast</em></div></div>
+
+  <div class="sw"><i style="background:#F6C049"></i><div><b>Sun</b><span>#F6C049</span><em>Chapter numerals, progress</em></div></div>
+  <div class="sw"><i style="background:#FFE29A"></i><div><b>Sun glow</b><span>#FFE29A</span><em>Glints and glows</em></div></div>
+  <div class="sw"><i style="background:#F2914C"></i><div><b>Apricot</b><span>#F2914C</span><em>Sunset gradient</em></div></div>
+  <div class="sw"><i style="background:#C05A38"></i><div><b>Terracotta</b><span>#C05A38</span><em>Handwritten notes</em></div></div>
+  <div class="sw"><i style="background:#D8456E"></i><div><b>Bougainvillea</b><span>#D8456E</span><em>Twice per deck, no more</em></div></div>
+  <div class="sw"><i style="background:#6E2438"></i><div><b>Mavrodaphne</b><span>#6E2438</span><em>Taverna chapter only</em></div></div>
+</div>
+
+<div class="two">
+  <div>
+    <h2>Type</h2>
+    <div class="type">
+      <div class="spec"><p class="meta">Display · Cormorant Garamond 300 · headlines only</p>
+        <p class="d-xl">Kefalonia</p></div>
+      <div class="spec"><p class="meta">Display 400 · 44px · slide titles</p>
+        <p class="d-m">The same bay, eight hours apart</p></div>
+      <div class="spec"><p class="meta">Body · DM Sans 400 · 21/33 · never centred</p>
+        <p class="body">Pebbles, not sand — that is why the water looks like that. Limestone under clear
+        water reflects blue-green light straight back up at you.</p></div>
+      <div class="spec"><p class="meta">Script · Caveat · at most one per slide</p>
+        <p class="note">I checked twice. It really was eight metres.</p></div>
+      <div class="spec" style="border-bottom:0"><p class="meta">Mono · IBM Plex Mono · times and measurements</p>
+        <p class="mono">38°07′N 20°30′E · 26 °C · 41 nm</p></div>
+    </div>
+  </div>
+
+  <div>
+    <h2>Motion</h2>
+    <table><tbody>
+      <tr><td>Ken Burns push on every still</td><td>18s · alternate</td></tr>
+      <tr><td>Staggered child reveal</td><td>90ms · 640ms each</td></tr>
+      <tr><td>Headline words rising</td><td>140ms apart</td></tr>
+      <tr><td>Map route drawing itself</td><td>3.6s</td></tr>
+      <tr><td>Boat sailing to the next stop</td><td>900ms</td></tr>
+      <tr><td>Sun sinking on the last slide</td><td>4.2s</td></tr>
+      <tr><td>Default easing — a wave arriving</td><td>.22 1 .36 1</td></tr>
+      <tr><td>Overshoot easing — pins and chips</td><td>.34 1.56 .64 1</td></tr>
+    </tbody></table>
+
+    <h2>Surfaces</h2>
+    <table><tbody>
+      <tr><td>Whitewash · default</td><td>#FDFBF6</td></tr>
+      <tr><td>Limestone · alternating</td><td>gradient 160°</td></tr>
+      <tr><td>Foam · map and phrasebook</td><td>#C7EFEC</td></tr>
+      <tr><td>Aegean · chapters and stats</td><td>gradient 165°</td></tr>
+      <tr><td>Photo · scrim mandatory</td><td>0 → 74% abyss</td></tr>
+    </tbody></table>
+    <p class="meta" style="margin-top:14px">One surface per slide. Never two.</p>
+
+    <h2>Chips</h2>
+    <div class="rule">
+      <span class="pill p-sea">swim stop</span>
+      <span class="pill p-sun">sunset run</span>
+      <span class="pill p-olive">until 12:00</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

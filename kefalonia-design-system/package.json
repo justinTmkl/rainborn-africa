@@ -1,0 +1,27 @@
+{
+  "name": "kefalonia-summer-design-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mediterranean deck system for the Kefalonia summer presentation — tokens, slide components, and motion vocabulary. Built to be read by claude.ai/design via /design-sync.",
+  "keywords": ["design-system", "presentation", "deck", "mediterranean", "kefalonia"],
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens": "./tokens/theme.ts",
+    "./tokens.css": "./tokens/tokens.css",
+    "./tokens.json": "./tokens/tokens.json"
+  },
+  "designSystem": {
+    "name": "Kefalonia Summer",
+    "tokens": "tokens/tokens.json",
+    "css": "tokens/tokens.css",
+    "components": "src/",
+    "previews": "previews/",
+    "brief": "DESIGN_BRIEF.md"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  }
+}
