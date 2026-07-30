@@ -7,9 +7,10 @@
 <style>
 /* ==========================================================================
    Kefalonia Summer — runnable preview of the deck system.
-   Self-contained: no build step, no network. Every "photograph" here is drawn
-   in CSS from the palette, standing in for the real shot list — which is why
-   the colours are exactly right and the content is obviously placeholder.
+   Self-contained, no build step. Photographs are real (Wikimedia Commons),
+   loaded straight from Commons — see DESIGN_BRIEF.md §4.1 for credits.
+   Press Ctrl/Cmd+P for a proper multi-page PDF; see the @media print block
+   near the end of this stylesheet for how that works.
    ========================================================================== */
 
 /* ---- Tokens (mirrors ../tokens/tokens.css) ------------------------------ */
@@ -341,6 +342,37 @@ body { background:var(--kef-sea-abyss); font-family:var(--kef-font-sans); overfl
 .center-col { height:100%; display:flex; flex-direction:column; justify-content:center; }
 button { font-family:inherit; color:inherit; }
 button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun); outline-offset:3px; }
+
+/* ==========================================================================
+   Print — Ctrl/Cmd+P produces a 14-page, one-slide-per-page PDF at the
+   deck's native 1920×1080, instead of the single active slide the screen
+   shows. Photos need this browser's own internet to load, so the PDF you
+   get from your own machine is the one that actually has them.
+   ========================================================================== */
+@media print {
+  @page { size: 20in 11.25in; margin: 0; }
+  * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
+  html, body { background:none; overflow:visible; height:auto; }
+  .stage { position:static; inset:auto; overflow:visible; background:none; }
+  .canvas { position:static; left:auto; top:auto; width:auto; height:auto; transform:none; }
+  .slide {
+    position:relative; inset:auto; overflow:hidden; width:1920px; height:1080px;
+    opacity:1 !important; pointer-events:auto !important;
+    break-after:page; page-break-after:always;
+  }
+  .slide:last-of-type { break-after:auto; page-break-after:auto; }
+  .rail, .hint, .pnote { display:none !important; }
+  /* Arrival-only reveals: show every slide's end state, not just the one
+     that happened to be on screen when you pressed print. */
+  .anim-rise, .anim-fade, .stagger > *, .title-words span {
+    opacity:1 !important; transform:none !important; animation:none !important;
+  }
+  .scene img { animation:none !important; }
+  .itin__day, .stop, .duel__row { opacity:1 !important; transform:none !important; }
+  .itin__fill { width:100% !important; }
+  .boat { display:none !important; }
+  #duelFooter { opacity:1 !important; }
+}
 </style>
 </head>
 <body>
@@ -830,7 +862,7 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
 </div><!-- /canvas -->
 </div><!-- /stage -->
 
-<div class="hint" id="hint">← → move · O overview · P notes · S sound · F fullscreen</div>
+<div class="hint" id="hint">← → move · O overview · P notes · S sound · F fullscreen · ⌘/Ctrl+P → PDF</div>
 <div class="pnote" id="pnote"><b>Say:</b><span id="pnoteText"></span></div>
 
 <script>
@@ -1019,6 +1051,24 @@ button:focus-visible,[tabindex]:focus-visible { outline:3px solid var(--kef-sun)
       '<p class="cap duel__crit">' + d.c + '</p>' +
       '<p class="b-l duel__right">' + (d.w === 'r' ? '<span style="color:#F6C049">◆</span> ' : '') + d.r + '</p>';
     duelRows.appendChild(row);
+  });
+
+  /* ---- Print: snap JS-driven values to their end state ----------------
+     The screen only ever animates the one active slide, so a slide never
+     visited this session would print blank counters and a 0–0 duel score.
+     Compute them directly the moment a print is requested, independent of
+     which slide happens to be on screen. */
+  window.addEventListener('beforeprint', function () {
+    document.querySelectorAll('[data-count]').forEach(function (el) {
+      var target = parseFloat(el.dataset.count);
+      el.textContent = Math.round(target).toLocaleString('en-GB') + (el.dataset.suffix || '');
+    });
+    var l = 0, r = 0, ties = 0;
+    DUEL.forEach(function (d) { if (d.w === 'l') l++; else if (d.w === 'r') r++; else ties++; });
+    var scoreEl = document.getElementById('duelScore');
+    var tiesEl = document.getElementById('duelTies');
+    if (scoreEl) scoreEl.textContent = l + '–' + r;
+    if (tiesEl) tiesEl.textContent = ties ? ties + ' tied' : ' ';
   });
 
   /* ---- Per-slide entrance sequences --------------------------------- */
