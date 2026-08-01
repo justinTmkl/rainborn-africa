@@ -1,0 +1,293 @@
+<!-- @dsCard group="Slides" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kefalonia Summer — slide types</title>
+<style>
+:root{
+  --sea-abyss:#06384B;--sea-deep:#0B5673;--sea-mid:#1187A8;--sea-lagoon:#35B8C4;
+  --sea-myrtos:#6FD9DC;--sea-foam:#C7EFEC;--whitewash:#FDFBF6;--limestone:#F4ECDD;
+  --sand:#E7D6B8;--olive:#7E8F4E;--olive-deep:#4E6039;--sun:#F6C049;--sun-glow:#FFE29A;
+  --apricot:#F2914C;--terracotta:#C05A38;--bougainvillea:#D8456E;--mavrodaphne:#6E2438;
+  --ink:#12303B;--ink-soft:#3E5A66;--ink-mute:#6E858F;
+  --display:'Cormorant Garamond',Palatino,'Book Antiqua',Georgia,serif;
+  --sans:'DM Sans','Avenir Next','Segoe UI',system-ui,sans-serif;
+  --script:'Caveat','Bradley Hand','Segoe Script',cursive;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono',monospace;
+  --scrim:linear-gradient(0deg,rgba(6,56,75,.74) 0%,rgba(6,56,75,.34) 34%,rgba(6,56,75,.04) 66%,rgba(6,56,75,0) 100%);
+}
+*{box-sizing:border-box}
+body{margin:0;padding:56px 64px;background:var(--whitewash);font-family:var(--sans);color:var(--ink-soft)}
+.eyebrow{font-size:14px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--sea-mid);margin:0}
+h1{font-family:var(--display);font-weight:400;font-size:56px;line-height:1;margin:8px 0 10px;color:var(--ink)}
+.lede{font-size:19px;line-height:1.5;max-width:66ch;margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 28px;margin-top:44px}
+figure{margin:0}
+.thumb{aspect-ratio:16/9;border-radius:12px;overflow:hidden;position:relative;
+  box-shadow:0 10px 26px rgba(18,48,59,.14);background:var(--whitewash);font-size:9px;line-height:1.25}
+figcaption{margin-top:12px}
+figcaption b{display:block;font-family:var(--display);font-size:23px;font-weight:500;color:var(--ink)}
+figcaption span{display:block;font-size:14px;line-height:1.45;color:var(--ink-mute);margin-top:3px}
+figcaption code{font-family:var(--mono);font-size:12px;color:var(--sea-mid)}
+
+/* Scene stand-ins, same construction as the deck's CSS photographs. */
+.sc{position:absolute;inset:0}
+.sky{position:absolute;inset:0;background:linear-gradient(180deg,#96DFF0,#EFF9F4 96%)}
+.sea{position:absolute;inset:46% 0 0 0;background:linear-gradient(180deg,#7FE4E4,#0C6C90)}
+.sea--sunset{background:linear-gradient(180deg,#E39070,#2B3E62)}
+.sky--sunset{background:linear-gradient(180deg,#FFD27A,#FFAF7C)}
+.hill{position:absolute;bottom:0;width:26%;height:62%;
+  background:linear-gradient(180deg,#93A96E,#E6DCC2 60%);border-radius:60% 60% 0 0/86% 86% 0 0}
+.hill--l{left:-4%}
+.hill--r{right:-4%;background:linear-gradient(180deg,#6E8047,#D5C7A6 60%)}
+.sun{position:absolute;right:18%;top:10%;width:22%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,243,214,.95),rgba(255,226,154,0) 68%)}
+.scrim{position:absolute;inset:0;background:var(--scrim)}
+.t-title{position:absolute;left:7%;bottom:16%;color:var(--whitewash)}
+.t-title b{display:block;font-family:var(--display);font-size:30px;font-weight:300;line-height:1}
+.t-title i{display:block;font-style:normal;font-size:9px;margin-top:5px;opacity:.85}
+.eyeb{font-size:6px;letter-spacing:.2em;text-transform:uppercase;color:var(--sea-myrtos)}
+.pad{position:absolute;inset:11% 7%}
+.hd{font-family:var(--display);font-size:19px;color:var(--ink);line-height:1.05;margin:4px 0 0}
+.hd--dark{color:var(--whitewash)}
+.bar{height:2px;background:var(--sand);margin-top:7px;width:34%}
+.row{display:flex;gap:5px;margin-top:9px}
+.box{flex:1;border-radius:4px;background:var(--limestone);border:1px solid rgba(18,48,59,.08)}
+.box--photo{background:linear-gradient(180deg,#7FE4E4,#0C6C90)}
+.box--warm{background:linear-gradient(180deg,#EDA85E,#9A5F6E)}
+.num{position:absolute;left:6%;bottom:14%;font-family:var(--display);font-size:52px;line-height:.8;color:var(--sun)}
+.chap{position:absolute;left:22%;bottom:15%;color:var(--whitewash)}
+.chap b{display:block;font-family:var(--display);font-size:24px;font-weight:300;line-height:1}
+.chap i{display:block;font-family:var(--script);font-style:normal;font-size:12px;color:var(--sun-glow);margin-top:2px}
+.arches{position:absolute;inset:24% 8% 14%;display:flex;gap:7px}
+.arch{flex:1;border-radius:50% 50% 0 0/42% 42% 0 0;border:2px solid var(--whitewash);
+  background:linear-gradient(180deg,#A9E4F2,#54C9D4 46%,#0D6486);box-shadow:0 4px 10px rgba(18,48,59,.2)}
+.wipe{position:absolute;inset:0}
+.wipe__handle{position:absolute;top:0;bottom:0;left:52%;width:2px;background:var(--whitewash)}
+.wipe__knob{position:absolute;top:50%;left:52%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;
+  background:var(--whitewash);box-shadow:0 3px 8px rgba(18,48,59,.3)}
+.stops{position:absolute;inset:34% 7% 12%;display:flex;gap:6px}
+.stop{flex:1;border-radius:5px;background:rgba(253,251,246,.16);border:1px solid rgba(253,251,246,.3)}
+.wave{position:absolute;left:7%;right:7%;top:30%;height:1px;background:var(--sea-myrtos);opacity:.8}
+.boat{position:absolute;right:16%;top:26%;font-size:11px}
+.stats{position:absolute;inset:30% 7% 18%;display:flex;gap:8px;text-align:center}
+.stat{flex:1}
+.stat b{display:block;font-family:var(--display);font-size:26px;font-weight:300;color:var(--whitewash);line-height:1}
+.stat i{display:block;font-style:normal;font-size:6px;letter-spacing:.16em;text-transform:uppercase;color:var(--sea-myrtos);margin-top:3px}
+.cards{position:absolute;inset:26% 7% 12%;display:flex;gap:6px}
+.card{flex:1;border-radius:5px;background:var(--whitewash);border:1px solid rgba(18,48,59,.1);
+  box-shadow:0 4px 10px rgba(18,48,59,.1);overflow:hidden;display:flex;flex-direction:column}
+.card__img{height:38%;background:linear-gradient(180deg,#A5E1F0,#5CC9D2 52%,#0A5570)}
+.card__body{flex:1;padding:5px 6px}
+.card__t{font-family:var(--display);font-size:11px;color:var(--ink);line-height:1}
+.card__l{height:1px;background:var(--sand);margin-top:5px}
+.card__o{font-size:6px;color:var(--mavrodaphne);margin-top:4px}
+.lines{position:absolute;inset:30% 7% 14%;display:grid;gap:4px}
+.line{border-radius:4px;background:var(--whitewash);border:1px solid var(--sand);
+  display:grid;grid-template-columns:34% 26% 1fr;align-items:center;gap:6px;padding:0 7px}
+.line span{height:5px;border-radius:3px;background:var(--limestone)}
+.line span:first-child{background:var(--sea-foam)}
+.duel{position:absolute;inset:32% 7% 12%;display:grid;gap:3px}
+.duel__r{display:grid;grid-template-columns:1fr 22% 1fr;gap:6px;align-items:center;
+  border-radius:4px;padding:3px 6px}
+.duel__r:nth-child(odd){background:var(--limestone)}
+.duel__r span{height:5px;border-radius:3px;background:rgba(18,48,59,.12)}
+.duel__r span.w{background:var(--sun)}
+.quiz{position:absolute;inset:28% 7% 14%;display:flex;gap:6px}
+.q{flex:1;border-radius:5px;border:1px solid rgba(253,251,246,.3);overflow:hidden;position:relative;
+  background:linear-gradient(180deg,#93DDEF 26%,#84E7E4 26%,#0E7392)}
+.q--sand{background:linear-gradient(180deg,#BCE2F3 26%,#4FB6D8 26%,#14567E)}
+.q--right{border:2px solid var(--sun);box-shadow:0 4px 12px rgba(246,192,73,.4)}
+.q i{position:absolute;left:4px;bottom:3px;font-style:normal;font-size:7px;color:var(--whitewash)}
+.centre{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:5px;padding:0 14%}
+.centre b{font-family:var(--display);font-size:17px;font-weight:300;font-style:italic;color:var(--ink);line-height:1.15}
+.closing b{font-family:var(--display);font-size:30px;font-weight:300;color:var(--whitewash);line-height:1}
+.closing__sun{position:absolute;left:50%;bottom:-9%;width:26%;aspect-ratio:1;margin-left:-13%;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,243,214,.9),rgba(255,226,154,0) 70%)}
+.rail{position:absolute;left:7%;right:7%;bottom:7%;display:flex;gap:3px;align-items:center}
+.rail i{flex:1;height:1.5px;background:rgba(18,48,59,.14);border-radius:2px}
+.rail i.on{background:var(--sun)}
+.rail--dark i{background:rgba(253,251,246,.22)}
+.rail--dark i.on{background:var(--sun)}
+</style>
+</head>
+<body>
+
+<p class="eyebrow">Design system · slide types</p>
+<h1>Fourteen ways to hold a room</h1>
+<p class="lede">Every slide in the deck is one of these components, on a fixed 1920×1080 canvas with a
+128px gutter. One surface per slide; text over a photograph always gets the scrim; every still
+photograph pushes slowly for eighteen seconds.</p>
+
+<div class="grid">
+
+  <figure><div class="thumb">
+    <div class="sc"><div class="sky"></div><div class="sun"></div><div class="sea"></div>
+      <div class="hill hill--l"></div><div class="hill hill--r"></div></div>
+    <div class="scrim"></div>
+    <div class="t-title"><span class="eyeb">Ionian Sea · Greece</span>
+      <b>Kefalonia</b><i>Seven days on the greenest island in the Ionian</i></div>
+    <div class="rail rail--dark"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div><figcaption><b>TitleSlide</b><span>Background video, words rising one at a time, sun and wave band.</span><code>&lt;TitleSlide /&gt;</code></figcaption></figure>
+
+  <figure><div class="thumb" style="background:var(--sea-foam)">
+    <div class="pad" style="display:grid;grid-template-columns:1fr 40%;gap:10px;align-items:center">
+      <svg viewBox="-30 10 690 700" style="width:100%;height:100%">
+        <path d="M308 40 C316 43 327 95 330 118 C333 141 325 181 326 205 C327 229 328 267 338 288 C348 309 386 340 399 356 C412 372 416 388 432 404 C448 420 493 452 512 470 C531 488 556 507 566 528 C576 549 584 601 586 620 C588 639 591 652 578 660 C565 668 519 681 494 674 C469 667 430 622 403 612 C376 602 328 605 300 600 C272 595 219 598 206 580 C193 562 208 494 208 470 C208 446 213 421 205 412 C197 403 160 396 152 408 C144 420 148 476 146 500 C144 524 150 566 140 574 C130 582 94 573 78 558 C62 543 37 492 30 470 C23 448 22 419 26 400 C30 381 43 347 56 336 C69 325 104 324 120 322 C136 320 159 326 172 320 C185 314 203 296 214 282 C225 268 243 240 248 224 C253 208 247 186 250 168 C253 150 264 118 272 100 C280 82 300 37 308 40 Z"
+          fill="#E7D6B8" stroke="#4E6039" stroke-width="6"></path>
+        <path d="M208 486 Q170 470 148 470 Q190 340 250 222 Q240 190 252 170 Q262 100 308 46 Q400 200 397 356 Q360 400 356 468 Q470 480 562 528"
+          fill="none" stroke="#D8456E" stroke-width="10" stroke-dasharray="26 22" stroke-linecap="round"></path>
+      </svg>
+      <div><span class="eyeb" style="color:var(--sea-mid)">The island</span>
+        <p class="hd">Nowhere near where you think it is</p><div class="bar"></div>
+        <div style="margin-top:8px;display:grid;gap:4px">
+          <span style="display:block;height:1px;background:var(--sand)"></span>
+          <span style="display:block;height:1px;background:var(--sand)"></span>
+          <span style="display:block;height:1px;background:var(--sand)"></span>
+        </div></div>
+    </div>
+    <div class="rail"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div><figcaption><b>IslandMap</b><span>Route draws itself over 3.6s, pins drop in sequence, facts beside it.</span><code>&lt;IslandMap /&gt;</code></figcaption></figure>
+
+  <figure><div class="thumb" style="background:linear-gradient(160deg,#FDFBF6,#F4ECDD)">
+    <div class="pad"><span class="eyeb" style="color:var(--sea-mid)">The week</span>
+      <p class="hd">Seven days, clockwise around the island</p>
+      <div style="position:absolute;left:0;right:0;top:52%;height:1px;background:var(--sand)"></div>
+      <div style="position:absolute;left:0;width:58%;top:52%;height:1px;background:var(--sun)"></div>
+      <div style="position:absolute;left:0;right:0;top:52%;display:flex;justify-content:space-between">
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--whitewash);border:2px solid var(--sea-mid);margin-top:-3px"></span>
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--whitewash);border:2px solid var(--sea-mid);margin-top:-3px"></span>
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--whitewash);border:2px solid var(--sea-mid);margin-top:-3px"></span>
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--sun);border:2px solid var(--terracotta);margin-top:-3px"></span>
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--whitewash);border:2px solid var(--sea-mid);margin-top:-3px"></span>
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--whitewash);border:2px solid var(--sea-mid);margin-top:-3px"></span>
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--whitewash);border:2px solid var(--sea-mid);margin-top:-3px"></span>
+      </div>
+    </div>
+    <div class="rail"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div><figcaption><b>Itinerary</b><span>Seven days as a coast road, revealing day by day so nobody reads ahead.</span><code>&lt;Itinerary /&gt;</code></figcaption></figure>
+
+  <figure><div class="thumb">
+    <div class="sc"><div class="sky"></div><div class="sun"></div><div class="sea"></div>
+      <div class="hill hill--l"></div><div class="hill hill--r"></div></div>
+    <div class="scrim"></div>
+    <div class="num">01</div>
+    <div class="chap"><b>Exploring the island</b><i>Εξερεύνηση</i></div>
+    <div class="rail rail--dark"><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  </div><figcaption><b>ChapterDivider</b><span>Oversized numeral in sun yellow, Greek spelling underneath, image pushing.</span><code>&lt;ChapterDivider /&gt;</code></figcaption></figure>
+
+  <figure><div class="thumb">
+    <div class="wipe">
+      <div class="sc"><div class="sky sky--sunset"></div><div class="sun" style="right:34%;top:38%"></div>
+        <div class="sea sea--sunset"></div><div class="hill hill--r" style="background:linear-gradient(180deg,#4E3B3C,#7B5A52 60%)"></div></div>
+      <div class="sc" style="clip-path:inset(0 48% 0 0)"><div class="sky"></div><div class="sea"></div>
+        <div class="hill hill--l"></div></div>
+      <div class="wipe__handle"></div><div class="wipe__knob"></div>
+    </div>
+    <div class="rail rail--dark"><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  </div><figcaption><b>CompareSlider</b><span>Drag-to-wipe. Myrtos at noon against the same frame at sunset.</span><code>&lt;CompareSlider /&gt;</code></figcaption></figure>
+
+  <figure><div class="thumb" style="background:linear-gradient(160deg,#FDFBF6,#F4ECDD)">
+    <div class="pad" style="text-align:center"><span class="eyeb" style="color:var(--sea-mid)">Three villages</span>
+      <p class="hd">Whitewash, bougainvillea, cats</p></div>
+    <div class="arches"><div class="arch"></div><div class="arch"></div><div class="arch"></div></div>
+    <div class="rail"><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  </div><figcaption><b>ArchGallery</b><span>Portrait media in Greek arches — the shape of every church window here.</span><code>&lt;ArchGallery /&gt;</code></figcaption></figure>
+
+  <figure><div class="thumb" style="background:linear-gradient(165deg,#0B5673,#1187A8 45%,#35B8C4)">
+    <div class="pad"><span class="eyeb">Chapter · boat day</span>
+      <p class="hd hd--dark">Eight hours, four bays, one anchor</p></div>
+    <div class="wave"></div><div class="boat">⛵</div>
+    <div class="stops"><div class="stop"></div><div class="stop"></div><div class="stop"></div><div class="stop"></div></div>
+    <div class="rail rail--dark"><i></i><i></i><i class="on"></i><i></i><i></i><i></i></div>
+  </div><figcaption><b>BoatTour</b><span>The boat sails the wave and parks at the stop you are talking about.</span><code>&lt;BoatTour /&gt;</code></figcaption></figure>
+
+  <figure><div class="thumb" style="background:linear-gradient(165deg,#0B5673,#1187A8 45%,#35B8C4)">
+    <div class="pad" style="text-align:center"><span class="eyeb">By the numbers</span>
+      <p class="hd hd--dark">Seven days, in numbers</p></div>
+    <div class="stats">
+      <div class="stat"><b>9</b><i>beaches</i></div><div class="stat"><b>14 km</b><i>swum</i></div>
+      <div class="stat"><b>26 °C</b><i>water</i></div><div class="stat"><b>23</b><i>frappés</i></div>
+    </div>
+    <div class="rail rail--dark"><i></i><i></i><i class="on"></i><i></i><i></i><i></i></div>
+  </div><figcaption><b>StatRow</b><span>Values count up on arrival. Tabular numerals, so nothing jitters.</span><code>&lt;StatRow /&gt;</code></figcaption></figure>
+
+  <figure><div class="thumb" style="background:linear-gradient(165deg,#0B5673,#1187A8 45%,#35B8C4)">
+    <div class="pad"><span class="eyeb">Your turn</span>
+      <p class="hd hd--dark">Three of these are Kefalonia. Which one isn't?</p></div>
+    <div class="quiz"><div class="q"><i>A</i></div><div class="q q--sand q--right"><i>✓ B</i></div>
+      <div class="q"><i>C</i></div><div class="q"><i>D</i></div></div>
+    <div class="rail rail--dark"><i></i><i></i><i></i><i class="on"></i><i></i><i></i></div>
+  </div><figcaption><b>QuizSlide</b><span>Placed in the middle third on purpose — exactly where attention dips.</span><code>&lt;QuizSlide /&gt;</code></figcaption></figure>
+
+  <figure><div class="thumb" style="background:linear-gradient(160deg,#FDFBF6,#F4ECDD)">
+    <div class="pad"><span class="eyeb" style="color:var(--mavrodaphne)">Chapter · where we ate</span>
+      <p class="hd">Four tavernas worth the drive</p></div>
+    <div class="cards">
+      <div class="card"><div class="card__img"></div><div class="card__body"><div class="card__t">Tassia</div><div class="card__l"></div><div class="card__o">Order the kreatopita</div></div></div>
+      <div class="card"><div class="card__img" style="background:linear-gradient(180deg,#EDA85E,#9A5F6E)"></div><div class="card__body"><div class="card__t">To Perasma</div><div class="card__l"></div><div class="card__o">Order the kleftiko</div></div></div>
+      <div class="card"><div class="card__img"></div><div class="card__body"><div class="card__t">Paradise</div><div class="card__l"></div><div class="card__o">Order the octopus</div></div></div>
+      <div class="card"><div class="card__img"></div><div class="card__body"><div class="card__t">Casa Grec</div><div class="card__l"></div><div class="card__o">Order the Robola</div></div></div>
+    </div>
+    <div class="rail"><i></i><i></i><i></i><i></i><i class="on"></i><i></i></div>
+  </div><figcaption><b>TavernaGrid</b><span>Olive ratings, one must-order dish, and a click to flip for the insider tip.</span><code>&lt;TavernaGrid /&gt;</code></figcaption></figure>
+
+  <figure><div class="thumb" style="background:var(--sea-foam)">
+    <div class="pad"><span class="eyeb" style="color:var(--sea-mid)">Five words that got us everywhere</span>
+      <p class="hd">A little Greek goes a long way</p></div>
+    <div class="lines">
+      <div class="line" style="height:16px"><span></span><span></span><span></span></div>
+      <div class="line" style="height:16px;border:2px solid var(--sun);background:rgba(246,192,73,.16)"><span></span><span></span><span></span></div>
+      <div class="line" style="height:16px"><span></span><span></span><span></span></div>
+      <div class="line" style="height:16px"><span></span><span></span><span></span></div>
+    </div>
+    <div class="rail"><i></i><i></i><i></i><i></i><i class="on"></i><i></i></div>
+  </div><figcaption><b>Phrasebook</b><span>Click a Greek phrase and the browser says it back at el-GR, 0.85 rate.</span><code>&lt;Phrasebook /&gt;</code></figcaption></figure>
+
+  <figure><div class="thumb">
+    <div class="pad" style="text-align:center"><span class="eyeb" style="color:var(--sea-mid)">Ionian vs Tyrrhenian</span>
+      <p class="hd" style="font-size:15px"><span style="color:var(--sea-deep)">Kefalonia</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--ink)">2–3</span>
+        <span style="color:var(--terracotta)">Sicily</span></p></div>
+    <div class="duel">
+      <div class="duel__r"><span></span><span style="background:none"></span><span class="w"></span></div>
+      <div class="duel__r"><span class="w"></span><span style="background:none"></span><span></span></div>
+      <div class="duel__r"><span></span><span style="background:none"></span><span class="w"></span></div>
+      <div class="duel__r"><span></span><span style="background:none"></span><span></span></div>
+      <div class="duel__r"><span class="w"></span><span style="background:none"></span><span></span></div>
+      <div class="duel__r"><span></span><span style="background:none"></span><span class="w"></span></div>
+    </div>
+    <div class="rail"><i></i><i></i><i></i><i></i><i></i><i class="on"></i></div>
+  </div><figcaption><b>IslandDuel</b><span>Kefalonia against Sicily, row by row, ending on "go to both".</span><code>&lt;IslandDuel /&gt;</code></figcaption></figure>
+
+  <figure><div class="thumb" style="background:linear-gradient(160deg,#FDFBF6,#F4ECDD)">
+    <div class="centre">
+      <svg width="46" height="23" viewBox="0 0 96 48" aria-hidden="true">
+        <path d="M4 44C22 40 44 30 60 14" fill="none" stroke="#7E8F4E" stroke-width="2.2" stroke-linecap="round"></path>
+        <ellipse cx="24" cy="30" rx="9" ry="4" fill="#7E8F4E" transform="rotate(-28 24 30)"></ellipse>
+        <ellipse cx="38" cy="22" rx="9" ry="4" fill="#7E8F4E" transform="rotate(-36 38 22)"></ellipse>
+        <ellipse cx="32" cy="40" rx="9" ry="4" fill="#7E8F4E" transform="rotate(20 32 40)"></ellipse>
+        <circle cx="62" cy="12" r="5" fill="#4E6039"></circle>
+      </svg>
+      <b>“We said we would come back in autumn, when the water is still warm.”</b>
+      <span class="eyeb" style="color:var(--sea-mid)">Last evening · Argostoli</span>
+    </div>
+    <div class="rail"><i></i><i></i><i></i><i></i><i></i><i class="on"></i></div>
+  </div><figcaption><b>QuoteSlide</b><span>A breath between chapters. One sentence, olive sprig, a lot of air.</span><code>&lt;QuoteSlide /&gt;</code></figcaption></figure>
+
+  <figure><div class="thumb">
+    <div class="sc"><div class="sky sky--sunset" style="background:linear-gradient(180deg,#FFC978,#E8834E)"></div>
+      <div class="sea" style="inset:58% 0 0 0;background:linear-gradient(180deg,#D0714A,#1E3A55)"></div>
+      <div class="hill hill--l" style="background:linear-gradient(180deg,#6B4C46,#96665A 60%)"></div>
+      <div class="hill hill--r" style="background:linear-gradient(180deg,#3E3038,#5E4440 60%)"></div>
+      <div class="closing__sun"></div></div>
+    <div class="centre closing"><b>Efharistó</b>
+      <span class="eyeb" style="color:rgba(253,251,246,.92)">Thank you · ευχαριστώ</span></div>
+    <div class="rail rail--dark"><i></i><i></i><i></i><i></i><i></i><i class="on"></i></div>
+  </div><figcaption><b>ClosingSlide</b><span>The sun sinks over 4.2s and stays there while you take questions.</span><code>&lt;ClosingSlide /&gt;</code></figcaption></figure>
+
+</div>
+</body>
+</html>

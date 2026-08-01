@@ -1,0 +1,237 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kefalonia Summer — components</title>
+<style>
+:root{
+  --sea-abyss:#06384B;--sea-deep:#0B5673;--sea-mid:#1187A8;--sea-lagoon:#35B8C4;
+  --sea-myrtos:#6FD9DC;--sea-foam:#C7EFEC;--whitewash:#FDFBF6;--limestone:#F4ECDD;
+  --sand:#E7D6B8;--olive:#7E8F4E;--olive-deep:#4E6039;--sun:#F6C049;--sun-glow:#FFE29A;
+  --apricot:#F2914C;--terracotta:#C05A38;--bougainvillea:#D8456E;--mavrodaphne:#6E2438;
+  --ink:#12303B;--ink-soft:#3E5A66;--ink-mute:#6E858F;
+  --display:'Cormorant Garamond',Palatino,'Book Antiqua',Georgia,serif;
+  --sans:'DM Sans','Avenir Next','Segoe UI',system-ui,sans-serif;
+  --script:'Caveat','Bradley Hand','Segoe Script',cursive;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;padding:56px 64px;background:var(--whitewash);font-family:var(--sans);color:var(--ink-soft)}
+.eyebrow{font-size:14px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--sea-mid);margin:0}
+h1{font-family:var(--display);font-weight:400;font-size:56px;line-height:1;margin:8px 0 10px;color:var(--ink)}
+h2{font-size:13px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--sea-mid);margin:0 0 16px}
+.lede{font-size:19px;line-height:1.5;max-width:66ch;margin:0 0 44px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:44px 40px}
+section{min-width:0}
+.note-txt{font-size:14px;line-height:1.5;color:var(--ink-mute);margin:14px 0 0}
+
+/* Taverna card */
+.tav{width:100%;max-width:340px;border-radius:24px;overflow:hidden;background:var(--whitewash);
+  border:1px solid rgba(18,48,59,.1);box-shadow:0 12px 32px rgba(18,48,59,.12)}
+.tav__img{height:130px;background:linear-gradient(180deg,#A5E1F0 0 48%,#5CC9D2 48%,#0A5570)}
+.tav__body{padding:22px}
+.tav__top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.tav__name{font-family:var(--display);font-size:26px;font-weight:500;color:var(--ink);margin:0}
+.tav__price{font-family:var(--mono);font-size:15px;color:var(--mavrodaphne)}
+.tav__place{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);margin:6px 0 10px}
+.tav__note{font-size:15px;line-height:1.5;margin:10px 0 0}
+.tav__order{margin:16px 0 0;padding-top:12px;border-top:1px solid var(--sand);
+  font-size:14px;font-weight:500;color:var(--mavrodaphne)}
+.olives{display:inline-flex;gap:4px}
+
+/* Chips */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;border-radius:999px;font-size:15px;font-weight:500}
+.chip--sea{background:rgba(53,184,196,.16);border:1px solid rgba(17,135,168,.24);color:var(--sea-deep)}
+.chip--sun{background:rgba(246,192,73,.22);border:1px solid rgba(192,90,56,.28);color:var(--terracotta)}
+.chip--olive{background:rgba(126,143,78,.18);border:1px solid rgba(78,96,57,.28);color:var(--olive-deep)}
+
+/* Glass card on a photo */
+.on-photo{position:relative;height:210px;border-radius:20px;overflow:hidden}
+.on-photo__bg{position:absolute;inset:0;background:linear-gradient(180deg,#96DFF0 0 44%,#7FE4E4 44%,#0C6C90)}
+.on-photo__scrim{position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(6,56,75,.74),rgba(6,56,75,.34) 34%,rgba(6,56,75,.04) 66%,rgba(6,56,75,0))}
+.glass{position:absolute;left:20px;bottom:20px;right:20px;padding:16px 20px;border-radius:16px;
+  background:rgba(6,56,75,.34);backdrop-filter:blur(18px) saturate(130%);
+  -webkit-backdrop-filter:blur(18px) saturate(130%);border:1px solid rgba(253,251,246,.28);color:var(--whitewash)}
+.glass b{display:block;font-family:var(--display);font-size:22px;font-weight:500}
+.glass span{display:block;font-size:14px;line-height:1.45;opacity:.86;margin-top:4px}
+
+/* Arch */
+.arch-row{display:flex;gap:14px;align-items:flex-end}
+.arch{width:96px;height:150px;border-radius:50% 50% 0 0/42% 42% 0 0;border:5px solid var(--whitewash);
+  box-shadow:0 12px 26px rgba(18,48,59,.18);background:linear-gradient(180deg,#A9E4F2 0 42%,#54C9D4 42%,#0D6486)}
+
+/* Stat tile */
+.stats{display:flex;gap:22px;text-align:center;background:linear-gradient(165deg,#0B5673,#1187A8 45%,#35B8C4);
+  border-radius:20px;padding:26px 20px}
+.stat b{display:block;font-family:var(--display);font-size:44px;font-weight:300;color:var(--whitewash);
+  line-height:1;font-variant-numeric:tabular-nums}
+.stat i{display:block;font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--sea-myrtos);margin-top:6px}
+.stat em{display:block;font-style:normal;font-size:12px;color:rgba(253,251,246,.66);margin-top:4px}
+
+/* Map pin legend */
+.pins{display:grid;gap:12px}
+.pin{display:flex;align-items:center;gap:12px;font-size:16px}
+.pin i{width:20px;height:20px;border-radius:50%;border:3px solid var(--whitewash);
+  box-shadow:0 1px 4px rgba(18,48,59,.3);flex:none}
+.pin code{font-family:var(--mono);font-size:12px;color:var(--ink-mute);margin-left:auto}
+
+/* Ornaments */
+.orn{display:grid;gap:20px}
+.orn figure{margin:0}
+.orn figcaption{font-size:13px;color:var(--ink-mute);margin-top:6px}
+
+/* Presenter keys */
+kbd{font-family:var(--mono);font-size:13px;background:var(--limestone);border:1px solid var(--sand);
+  border-bottom-width:2px;border-radius:6px;padding:3px 8px;color:var(--ink)}
+.keys{display:grid;gap:10px}
+.key{display:flex;align-items:baseline;gap:12px;font-size:15px}
+.key span{flex:none;width:112px}
+</style>
+</head>
+<body>
+
+<p class="eyebrow">Design system · components</p>
+<h1>The pieces slides are built from</h1>
+<p class="lede">Small parts, used everywhere. Ratings are olives rather than stars, dividers are waves or
+a Greek key, and anything sitting on a photograph sits on frosted glass over a scrim.</p>
+
+<div class="grid">
+
+  <section>
+    <h2>Taverna card</h2>
+    <article class="tav">
+      <div class="tav__img"></div>
+      <div class="tav__body">
+        <div class="tav__top"><p class="tav__name">Tassia</p><span class="tav__price">€€€</span></div>
+        <p class="tav__place">Fiskardo · harbour</p>
+        <span class="olives" id="olives" aria-label="4.5 out of 5"></span>
+        <p class="tav__note">On the water, white tablecloths, and the only place we dressed up for.</p>
+        <p class="tav__order">Order the kreatopita</p>
+      </div>
+    </article>
+    <p class="note-txt">Clicking flips the card to a wine-red back with the insider tip.</p>
+  </section>
+
+  <section>
+    <h2>Chips</h2>
+    <div class="chips">
+      <span class="chip chip--sea">swim stop</span>
+      <span class="chip chip--sea">cast off</span>
+      <span class="chip chip--sun">sunset run</span>
+      <span class="chip chip--sun">lunch</span>
+      <span class="chip chip--olive">until 12:00</span>
+      <span class="chip chip--olive">at the market</span>
+    </div>
+
+    <h2 style="margin-top:36px">Stat tiles</h2>
+    <div class="stats">
+      <div class="stat"><b>41</b><i>nautical miles</i><em>and one wrong turn</em></div>
+      <div class="stat"><b>26 °C</b><i>water</i><em>at eleven</em></div>
+      <div class="stat"><b>23</b><i>frappés</i><em>not an exaggeration</em></div>
+    </div>
+    <p class="note-txt">Numbers count up over 1.1s on arrival, with any unit left intact.</p>
+  </section>
+
+  <section>
+    <h2>Text on a photograph</h2>
+    <div class="on-photo">
+      <div class="on-photo__bg"></div>
+      <div class="on-photo__scrim"></div>
+      <div class="glass"><b>The road above Myrtos</b>
+        <span>Six hairpins, no barrier, and a view that makes you stop where you should not stop.</span></div>
+    </div>
+    <p class="note-txt">Scrim first, then frosted glass. Never white type straight onto an image.</p>
+  </section>
+
+  <section>
+    <h2>Arch frames</h2>
+    <div class="arch-row">
+      <div class="arch"></div><div class="arch" style="height:170px"></div><div class="arch"></div>
+    </div>
+    <p class="note-txt">radius.arch — <code style="font-family:var(--mono);font-size:12px">50% 50% 0 0 / 42% 42% 0 0</code>.
+      Twice per deck; more and it becomes a gimmick.</p>
+  </section>
+
+  <section>
+    <h2>Map pins</h2>
+    <div class="pins">
+      <div class="pin"><i style="background:#C05A38"></i>Town · Fiskardo, Assos, Sami<code>kind: town</code></div>
+      <div class="pin"><i style="background:#1187A8"></i>Beach · Myrtos, Petani<code>kind: beach</code></div>
+      <div class="pin"><i style="background:#7E8F4E"></i>Nature · Mount Ainos<code>kind: nature</code></div>
+      <div class="pin"><i style="background:#D8456E"></i>Where we stayed · Argostoli<code>kind: stay</code></div>
+    </div>
+    <p class="note-txt">Pins drop 180ms apart with overshoot easing, after the route finishes drawing.</p>
+  </section>
+
+  <section>
+    <h2>Ornaments</h2>
+    <div class="orn">
+      <figure>
+        <svg width="240" height="24" viewBox="0 0 160 24" preserveAspectRatio="none" aria-hidden="true">
+          <defs><pattern id="mdr" width="40" height="24" patternUnits="userSpaceOnUse">
+            <path d="M2 22V6h16v12h-8v-6h20v16M22 2h16v20" fill="none" stroke="#35B8C4" stroke-width="2.4" stroke-linecap="square"></path>
+          </pattern></defs><rect width="160" height="24" fill="url(#mdr)"></rect>
+        </svg>
+        <figcaption>Meander — under eyebrows, above chapter titles</figcaption>
+      </figure>
+      <figure>
+        <svg width="200" height="22" viewBox="0 0 120 22" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 3q7.5-5 15 0t15 0t15 0t15 0t15 0t15 0t15 0t15 0" fill="none" stroke="#1187A8" stroke-width="1.6"></path>
+          <path d="M0 11q7.5-5 15 0t15 0t15 0t15 0t15 0t15 0t15 0t15 0" fill="none" stroke="#1187A8" stroke-width="1.6" opacity=".7"></path>
+          <path d="M0 19q7.5-5 15 0t15 0t15 0t15 0t15 0t15 0t15 0t15 0" fill="none" stroke="#1187A8" stroke-width="1.6" opacity=".45"></path>
+        </svg>
+        <figcaption>Wave rule — the default divider</figcaption>
+      </figure>
+      <figure>
+        <svg width="110" height="55" viewBox="0 0 96 48" aria-hidden="true">
+          <path d="M4 44C22 40 44 30 60 14" fill="none" stroke="#7E8F4E" stroke-width="2.2" stroke-linecap="round"></path>
+          <ellipse cx="22" cy="30" rx="9" ry="4.2" fill="#7E8F4E" opacity=".85" transform="rotate(-28 22 30)"></ellipse>
+          <ellipse cx="34" cy="24" rx="9" ry="4.2" fill="#7E8F4E" opacity=".85" transform="rotate(-34 34 24)"></ellipse>
+          <ellipse cx="46" cy="17" rx="9" ry="4.2" fill="#7E8F4E" opacity=".85" transform="rotate(-40 46 17)"></ellipse>
+          <ellipse cx="30" cy="40" rx="9" ry="4.2" fill="#7E8F4E" opacity=".85" transform="rotate(22 30 40)"></ellipse>
+          <ellipse cx="43" cy="33" rx="9" ry="4.2" fill="#7E8F4E" opacity=".85" transform="rotate(16 43 33)"></ellipse>
+          <circle cx="62" cy="12" r="5" fill="#4E6039"></circle>
+        </svg>
+        <figcaption>Olive sprig — chapter markers and the closing slide</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Presenter controls</h2>
+    <div class="keys">
+      <div class="key"><span><kbd>→</kbd> <kbd>Space</kbd></span>Next slide — clicking the background works too</div>
+      <div class="key"><span><kbd>←</kbd></span>Previous</div>
+      <div class="key"><span><kbd>O</kbd></span>Overview grid — jump anywhere mid-talk</div>
+      <div class="key"><span><kbd>P</kbd></span>Spoken note for this slide, never projected</div>
+      <div class="key"><span><kbd>S</kbd></span>Ambient sound: waves and faint bouzouki</div>
+      <div class="key"><span><kbd>F</kbd></span>Fullscreen</div>
+      <div class="key"><span><kbd>#13</kbd></span>In the URL — opens straight on slide 13</div>
+    </div>
+    <p class="note-txt">Clicks inside an interactive slide — the wipe, a taverna card, a quiz option, a
+      phrasebook row — never advance the deck.</p>
+  </section>
+
+</div>
+
+<script>
+/* Olive rating: five olives, filled in fifths. Halves allowed. */
+(function () {
+  var rating = 4.5, out = '';
+  for (var i = 0; i < 5; i++) {
+    var fill = Math.max(0, Math.min(1, rating - i)) * 100;
+    var id = 'ol' + i;
+    out += '<svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true">' +
+      '<defs><linearGradient id="' + id + '"><stop offset="' + fill + '%" stop-color="#7E8F4E"/>' +
+      '<stop offset="' + fill + '%" stop-color="transparent"/></linearGradient></defs>' +
+      '<ellipse cx="11" cy="11" rx="7" ry="9.5" fill="url(#' + id + ')" stroke="#4E6039" stroke-width="1.6"/></svg>';
+  }
+  document.getElementById('olives').innerHTML = out;
+})();
+</script>
+</body>
+</html>

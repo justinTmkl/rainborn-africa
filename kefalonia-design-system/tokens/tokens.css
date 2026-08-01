@@ -1,0 +1,239 @@
+/* ==========================================================================
+   Kefalonia Summer — design tokens
+   Mediterranean deck system: sun, sea, limestone, olive.
+   Single source of truth for CSS. Mirrors tokens/tokens.json.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ---- Sea ------------------------------------------------------------- */
+  --kef-sea-abyss:  #06384B;
+  --kef-sea-deep:   #0B5673;
+  --kef-sea-mid:    #1187A8;
+  --kef-sea-lagoon: #35B8C4;
+  --kef-sea-myrtos: #6FD9DC;
+  --kef-sea-foam:   #C7EFEC;
+
+  /* ---- Stone ----------------------------------------------------------- */
+  --kef-whitewash: #FDFBF6;
+  --kef-limestone: #F4ECDD;
+  --kef-sand:      #E7D6B8;
+  --kef-pebble:    #CFC3AE;
+
+  /* ---- Grove ----------------------------------------------------------- */
+  --kef-olive:      #7E8F4E;
+  --kef-olive-deep: #4E6039;
+  --kef-cypress:    #29402F;
+
+  /* ---- Sun ------------------------------------------------------------- */
+  --kef-sun:        #F6C049;
+  --kef-sun-glow:   #FFE29A;
+  --kef-apricot:    #F2914C;
+  --kef-terracotta: #C05A38;
+
+  /* ---- Bloom (loud accents — sparingly) -------------------------------- */
+  --kef-bougainvillea: #D8456E;
+  --kef-mavrodaphne:   #6E2438;
+
+  /* ---- Ink ------------------------------------------------------------- */
+  --kef-ink:        #12303B;
+  --kef-ink-soft:   #3E5A66;
+  --kef-ink-mute:   #6E858F;
+  --kef-ink-ondark: #FDFBF6;
+
+  /* ---- Gradients ------------------------------------------------------- */
+  --kef-grad-aegean:    linear-gradient(165deg, #0B5673 0%, #1187A8 45%, #35B8C4 100%);
+  --kef-grad-shallows:  linear-gradient(180deg, #6FD9DC 0%, #35B8C4 40%, #1187A8 100%);
+  --kef-grad-sunset:    linear-gradient(100deg, #FFE29A 0%, #F6C049 28%, #F2914C 62%, #D8456E 100%);
+  --kef-grad-sunrise:   linear-gradient(180deg, #FFE29A 0%, #F4ECDD 55%, #C7EFEC 100%);
+  --kef-grad-limestone: linear-gradient(160deg, #FDFBF6 0%, #F4ECDD 100%);
+  --kef-grad-scrim:     linear-gradient(0deg, rgba(6,56,75,0.88) 0%, rgba(6,56,75,0.45) 38%, rgba(6,56,75,0.05) 72%, rgba(6,56,75,0) 100%);
+  --kef-grad-sunglint:  radial-gradient(circle at 72% 18%, rgba(255,226,154,0.55) 0%, rgba(255,226,154,0.12) 34%, rgba(255,226,154,0) 62%);
+
+  /* ---- Type families --------------------------------------------------- */
+  --kef-font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --kef-font-sans:    'DM Sans', 'Inter', system-ui, sans-serif;
+  --kef-font-script:  'Caveat', 'Segoe Script', cursive;
+  --kef-font-mono:    'IBM Plex Mono', ui-monospace, monospace;
+
+  /* ---- Type scale (px on the 1920x1080 canvas) ------------------------- */
+  --kef-size-display-xl: 152px;
+  --kef-size-display-l:  108px;
+  --kef-size-display-m:  74px;
+  --kef-size-title:      52px;
+  --kef-size-subtitle:   34px;
+  --kef-size-body-l:     26px;
+  --kef-size-body:       21px;
+  --kef-size-caption:    17px;
+  --kef-size-eyebrow:    15px;
+  --kef-size-note:       30px;
+  --kef-size-numeral:    220px;
+
+  /* ---- Space ----------------------------------------------------------- */
+  --kef-space-1: 4px;
+  --kef-space-2: 8px;
+  --kef-space-3: 12px;
+  --kef-space-4: 16px;
+  --kef-space-5: 24px;
+  --kef-space-6: 32px;
+  --kef-space-7: 48px;
+  --kef-space-8: 64px;
+  --kef-space-9: 96px;
+  --kef-space-10: 128px;
+  --kef-space-11: 160px;
+  --kef-gutter: 128px;
+
+  /* ---- Radius ---------------------------------------------------------- */
+  --kef-radius-sm: 8px;
+  --kef-radius-md: 16px;
+  --kef-radius-lg: 24px;
+  --kef-radius-xl: 32px;
+  --kef-radius-pill: 999px;
+  --kef-radius-arch: 50% 50% 0 0 / 42% 42% 0 0;
+
+  /* ---- Elevation ------------------------------------------------------- */
+  --kef-shadow-sm:  0 2px 8px rgba(18,48,59,0.08);
+  --kef-shadow-md:  0 12px 32px rgba(18,48,59,0.12);
+  --kef-shadow-lg:  0 28px 64px rgba(18,48,59,0.18);
+  --kef-shadow-sun: 0 18px 48px rgba(246,192,73,0.30);
+  --kef-shadow-sea: 0 24px 56px rgba(11,86,115,0.28);
+
+  /* ---- Borders & glass ------------------------------------------------- */
+  --kef-border-hairline: 1px solid rgba(18,48,59,0.10);
+  --kef-border-sand:     1px solid #E7D6B8;
+  --kef-border-glass:    1px solid rgba(253,251,246,0.28);
+  --kef-blur-glass:      blur(18px) saturate(130%);
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --kef-dur-quick: 180ms;
+  --kef-dur-base: 320ms;
+  --kef-dur-slow: 640ms;
+  --kef-dur-cinematic: 1200ms;
+  --kef-dur-kenburns: 18000ms;
+  --kef-dur-shimmer: 7000ms;
+  --kef-ease-swell: cubic-bezier(0.22, 1, 0.36, 1);
+  --kef-ease-tide:  cubic-bezier(0.65, 0, 0.35, 1);
+  --kef-ease-lift:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --kef-ease-drift: cubic-bezier(0.45, 0, 0.55, 1);
+  --kef-stagger: 90ms;
+}
+
+/* ==========================================================================
+   Type utilities — never restyle headings ad hoc, use these.
+   ========================================================================== */
+.kef-display-xl,
+.kef-display-l,
+.kef-display-m,
+.kef-title { font-family: var(--kef-font-display); color: var(--kef-ink); margin: 0; }
+
+.kef-display-xl { font-size: var(--kef-size-display-xl); line-height: 0.92; font-weight: 300; letter-spacing: -0.02em; }
+.kef-display-l  { font-size: var(--kef-size-display-l);  line-height: 0.96; font-weight: 300; letter-spacing: -0.015em; }
+.kef-display-m  { font-size: var(--kef-size-display-m);  line-height: 1.02; font-weight: 400; letter-spacing: -0.01em; }
+.kef-title      { font-size: var(--kef-size-title);      line-height: 1.12; font-weight: 500; }
+
+.kef-subtitle { font-family: var(--kef-font-sans); font-size: var(--kef-size-subtitle); line-height: 1.32; font-weight: 300; color: var(--kef-ink-soft); margin: 0; }
+.kef-body-l   { font-family: var(--kef-font-sans); font-size: var(--kef-size-body-l); line-height: 1.5; color: var(--kef-ink-soft); margin: 0; }
+.kef-body     { font-family: var(--kef-font-sans); font-size: var(--kef-size-body); line-height: 1.55; color: var(--kef-ink-soft); margin: 0; }
+.kef-caption  { font-family: var(--kef-font-sans); font-size: var(--kef-size-caption); line-height: 1.45; letter-spacing: 0.01em; color: var(--kef-ink-mute); margin: 0; }
+.kef-note     { font-family: var(--kef-font-script); font-size: var(--kef-size-note); line-height: 1.2; color: var(--kef-terracotta); margin: 0; }
+.kef-mono     { font-family: var(--kef-font-mono); font-size: var(--kef-size-caption); letter-spacing: 0.02em; }
+.kef-numeral  { font-family: var(--kef-font-display); font-size: var(--kef-size-numeral); line-height: 0.8; font-weight: 300; letter-spacing: -0.04em; }
+
+.kef-eyebrow {
+  font-family: var(--kef-font-sans);
+  font-size: var(--kef-size-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--kef-sea-mid);
+  margin: 0;
+}
+
+.kef-on-dark,
+.kef-on-dark .kef-display-xl,
+.kef-on-dark .kef-display-l,
+.kef-on-dark .kef-display-m,
+.kef-on-dark .kef-title { color: var(--kef-ink-ondark); }
+.kef-on-dark .kef-subtitle,
+.kef-on-dark .kef-body-l,
+.kef-on-dark .kef-body { color: rgba(253,251,246,0.86); }
+.kef-on-dark .kef-caption { color: rgba(253,251,246,0.66); }
+.kef-on-dark .kef-eyebrow { color: var(--kef-sea-myrtos); }
+.kef-on-dark .kef-note { color: var(--kef-sun-glow); }
+
+/* ==========================================================================
+   Motion library — the whole deck's vocabulary lives here.
+   ========================================================================== */
+@keyframes kef-rise      { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes kef-fade      { from { opacity: 0; } to { opacity: 1; } }
+@keyframes kef-ken-burns { from { transform: scale(1.02) translate3d(0,0,0); } to { transform: scale(1.16) translate3d(-1.5%, -1.5%, 0); } }
+@keyframes kef-shimmer   { 0%,100% { opacity: 0.35; transform: translateX(-2%); } 50% { opacity: 0.75; transform: translateX(2%); } }
+@keyframes kef-sun-pulse { 0%,100% { opacity: 0.55; transform: scale(1); } 50% { opacity: 0.85; transform: scale(1.06); } }
+@keyframes kef-draw      { from { stroke-dashoffset: var(--kef-dash, 1000); } to { stroke-dashoffset: 0; } }
+@keyframes kef-pin-drop  { 0% { opacity: 0; transform: translateY(-22px) scale(0.7); } 100% { opacity: 1; transform: none; } }
+@keyframes kef-sway      { 0%,100% { transform: rotate(-1.2deg); } 50% { transform: rotate(1.2deg); } }
+@keyframes kef-wave-roll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.kef-anim-rise  { animation: kef-rise var(--kef-dur-slow) var(--kef-ease-swell) both; }
+.kef-anim-fade  { animation: kef-fade var(--kef-dur-cinematic) var(--kef-ease-swell) both; }
+.kef-ken-burns  { animation: kef-ken-burns var(--kef-dur-kenburns) var(--kef-ease-drift) infinite alternate; }
+.kef-shimmer    { animation: kef-shimmer var(--kef-dur-shimmer) var(--kef-ease-drift) infinite; }
+
+/* Stagger children: <div class="kef-stagger"> — each child reveals in sequence. */
+.kef-stagger > * { animation: kef-rise var(--kef-dur-slow) var(--kef-ease-swell) both; }
+.kef-stagger > *:nth-child(1) { animation-delay: calc(var(--kef-stagger) * 0); }
+.kef-stagger > *:nth-child(2) { animation-delay: calc(var(--kef-stagger) * 1); }
+.kef-stagger > *:nth-child(3) { animation-delay: calc(var(--kef-stagger) * 2); }
+.kef-stagger > *:nth-child(4) { animation-delay: calc(var(--kef-stagger) * 3); }
+.kef-stagger > *:nth-child(5) { animation-delay: calc(var(--kef-stagger) * 4); }
+.kef-stagger > *:nth-child(6) { animation-delay: calc(var(--kef-stagger) * 5); }
+.kef-stagger > *:nth-child(7) { animation-delay: calc(var(--kef-stagger) * 6); }
+.kef-stagger > *:nth-child(8) { animation-delay: calc(var(--kef-stagger) * 7); }
+
+@media (prefers-reduced-motion: reduce) {
+  .kef-anim-rise, .kef-anim-fade, .kef-ken-burns, .kef-shimmer, .kef-stagger > * {
+    animation: kef-fade 1ms linear both !important;
+  }
+}
+
+/* ==========================================================================
+   Surfaces
+   ========================================================================== */
+.kef-surface-white     { background: var(--kef-whitewash); }
+.kef-surface-limestone { background: var(--kef-grad-limestone); }
+.kef-surface-sea       { background: var(--kef-grad-aegean); }
+.kef-surface-sunset    { background: var(--kef-grad-sunset); }
+.kef-surface-foam      { background: var(--kef-sea-foam); }
+
+.kef-card {
+  background: var(--kef-whitewash);
+  border: var(--kef-border-hairline);
+  border-radius: var(--kef-radius-lg);
+  box-shadow: var(--kef-shadow-md);
+}
+
+.kef-glass {
+  background: rgba(6, 56, 75, 0.34);
+  backdrop-filter: var(--kef-blur-glass);
+  -webkit-backdrop-filter: var(--kef-blur-glass);
+  border: var(--kef-border-glass);
+  border-radius: var(--kef-radius-lg);
+  color: var(--kef-ink-ondark);
+}
+
+.kef-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kef-space-2);
+  padding: var(--kef-space-2) var(--kef-space-5);
+  border-radius: var(--kef-radius-pill);
+  background: rgba(53, 184, 196, 0.16);
+  border: 1px solid rgba(17, 135, 168, 0.24);
+  font-family: var(--kef-font-sans);
+  font-size: var(--kef-size-caption);
+  font-weight: 500;
+  color: var(--kef-sea-deep);
+}
+.kef-chip--sun { background: rgba(246,192,73,0.22); border-color: rgba(192,90,56,0.28); color: var(--kef-terracotta); }
+.kef-chip--olive { background: rgba(126,143,78,0.18); border-color: rgba(78,96,57,0.28); color: var(--kef-olive-deep); }
