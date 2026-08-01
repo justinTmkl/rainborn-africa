@@ -1,0 +1,13 @@
+{
+  "name": "kefalonia-keynote",
+  "private": true,
+  "description": "Generates the 24-slide Kefalonia keynote as a .pptx",
+  "scripts": {
+    "assets": "node make-assets.js",
+    "build": "node make-assets.js && node build.js"
+  },
+  "dependencies": {
+    "pptxgenjs": "^3.12.0",
+    "sharp": "^0.33.0"
+  }
+}
